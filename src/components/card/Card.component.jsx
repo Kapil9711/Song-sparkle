@@ -28,8 +28,8 @@ const CardWrapper = styled(Stack)`
 
   & img {
     display: block;
-    width: 82px;
-    height: 82px;
+    width: 100px;
+    height: 100px;
     border-radius: 100%;
   }
   & .active {
