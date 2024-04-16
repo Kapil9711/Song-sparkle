@@ -25,30 +25,6 @@ const CardWrapper = styled(Stack)`
     border: 1px solid
       color-mix(in srgb, hsl(10 87% 64% /1) 70%, hsl(172 92% 36% /0.6) 50%);
   }
-
-  & img {
-    display: block;
-    width: 80px;
-    height: 80px;
-    border-radius: 100%;
-  }
-  & .active {
-    animation: 10s linear infinite rotate forwards;
-  }
-
-  @keyframes rotate {
-    0% {
-      transform: rotate(0deg);
-      opacity: 0.9;
-    }
-    50% {
-      opacity: 0.7;
-    }
-    100% {
-      transform: rotate(360deg);
-      opacity: 1;
-    }
-  }
 `;
 
 const Card = ({ name, url, image, handleClick, id, active, i }) => {

@@ -1,5 +1,6 @@
 import { Stack } from "@mui/material";
 import styled from "styled-components";
+import ImageComponent from "./Image.component";
 
 const H1 = styled.h1`
   font-size: 1rem;
@@ -18,7 +19,7 @@ const MediaContent = ({ id, image, handleClick, active, name, i }) => {
       alignItems={"center"}
       sx={{ width: "95%" }}
     >
-      <img className={active === id ? "active" : ""} src={image} alt="" />
+      <ImageComponent active={active} id={id} image={image} />
       <H1 className="h1" style={{ color: "hsl(334, 100%, 93%)" }}>
         {i} : {name.slice(0, 14)}
       </H1>

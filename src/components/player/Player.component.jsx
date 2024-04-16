@@ -46,7 +46,17 @@ const PlayerComponent = ({ filteredSongs, active, handleClick, index }) => {
   };
   return (
     <CardWrapper>
-      <div className="player-wrapper">
+      <div
+        className="player-wrapper"
+        style={{
+          background: `linear-gradient(hsl(0 0% 5% /.9 ), hsl(0 0% 0% /.8 )),url(${currentSong.image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "repeat",
+          padding: "2px",
+          borderRadius: window.innerWidth < 776 ? "50px" : "0px",
+        }}
+      >
         <audio
           autoPlay
           onEnded={() =>

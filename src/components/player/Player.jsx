@@ -7,23 +7,27 @@ import {
   BsFillSkipEndCircleFill,
 } from "react-icons/bs";
 import { skiptoNext, skipBack } from "../../assets/Utility/Utility.components";
+import ImageComponent from "../card/Image.component";
 
 const PlayerContainer = styled.div`
+  border-radius: 50px;
+  background: linear-gradient(hsl(0 0% 0% /0.5), hsl(0 0% 0% /0.5));
+  border: solid hsl(334, 100%, 80%);
   width: 100%;
   margin: 0 auto;
-  padding: 1rem 1rem 0.6rem;
   color: rgb(218, 218, 218);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   background-color: transparent;
+  gap: 4px;
   @media (min-width: 996px) {
     & {
-      width: 100%;
+      width: 50%;
       gap: 10px;
       flex-direction: row;
       justify-content: "center";
+      padding: 0rem;
     }
   }
 
@@ -105,17 +109,14 @@ const Player = ({
   };
 
   return (
-    <PlayerContainer
-      style={{
-        background: `linear-gradient(hsl(0 0% 25% /.9 ), hsl(0 0% 30% /.2 )),url(${currentSong.image})`,
-        backgroundSize: "contain",
-        backgroundPosition: "center",
-        backgroundRepeat: "repeat",
-      }}
-      className="player_container"
-    >
+    <PlayerContainer className="player_container">
       <div className="title">
-        <p>{currentSong.title}</p>
+        <ImageComponent image={currentSong.image} isActive={isplaying} />
+        {/* {window.innerWidth > 776 ? (
+          <ImageComponent image={currentSong.image} isActive={isplaying} />
+        ) : (
+          <p>{currentSong.title}</p>
+        )} */}
       </div>
 
       <div className="navigation">
