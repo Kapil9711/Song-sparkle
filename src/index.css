@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding:0;
+}
+body{
+  background: hsl(346, 95%, 75%);
+  font-family: sans-serif;
+  
+}
+
+.gradient:after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * 2px);
+  left: calc(-1 * 2px);
+  height: calc(100% + 1px * 2);
+  width: calc(100% + 1px * 2);
+  background: linear-gradient(
+    60deg,
+    hsl(30 92% 58% /0.43),
+    hsl(10 87% 64% /0.43),
+    hsl(343 83% 62% /0.43),
+    hsl(291 29% 54% /0.43),
+    hsl(220 42% 52% /0.43),
+    hsl(188 83% 37% /0.43),
+    hsl(172 92% 36% /0.43),
+    hsl(135 35% 58% /0.43)
+  );
+  /* border-radius: calc(2 * 2px); */
+  z-index: -1;
+  animation: animatedgradient 5s linear alternate infinite;
+  background-size: 300% 300%;
+}
+
+.gradient-light:after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * 2px);
+  left: calc(-1 * 2px);
+  height: calc(100% + 1px * 2);
+  width: calc(100% + 1px * 2);
+  background: linear-gradient(
+    60deg,
+    hsl(30 92% 58% /.15),
+    hsl(10 87% 64% /0.15),
+    hsl(343 83% 62% /0.15),
+    hsl(291 29% 54% /0.15),
+    hsl(220 42% 52% /0.15),
+    hsl(188 83% 37% /0.15),
+    hsl(172 92% 36% /0.15),
+    hsl(135 35% 58% /0.15)
+  );
+  /* border-radius: calc(2 * 2px); */
+  z-index: -1;
+  animation: animatedgradient 5s linear alternate infinite;
+  background-size: 300% 300%;
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
+
