@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useRef, useState } from "react";
 import { useEffect } from "react";
-import Player from "../../Player/Player";
+import Player from "./Player";
 import { skiptoNext } from "../../assets/Utility/Utility.components";
 const CardWrapper = styled.div`
   position: fixed;
