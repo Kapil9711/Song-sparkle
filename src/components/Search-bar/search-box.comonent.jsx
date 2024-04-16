@@ -1,5 +1,6 @@
 import { TextField } from "@mui/material";
 import styled from "styled-components";
+import { useState } from "react";
 const SearchWrapper = styled.div`
   width: min(100%);
   display: flex;
@@ -11,10 +12,23 @@ const SearchWrapper = styled.div`
 `;
 
 const SearchBar = ({ handleChange }) => {
+  // const [value, setValue] = useState("");
+
+  var timer = "";
+  const delayWrapper = (e) => {
+    let value = e.target.value;
+    const delay = () => {
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        handleChange(value);
+      }, 1000);
+    };
+    delay();
+  };
   return (
     <SearchWrapper>
       <TextField
-        onChange={handleChange}
+        onChange={delayWrapper}
         label="Search"
         variant="filled"
         sx={{

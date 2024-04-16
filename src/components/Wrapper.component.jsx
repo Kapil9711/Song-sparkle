@@ -40,11 +40,19 @@ class Wrapper extends Component {
     this.setState({ index: i });
   };
 
-  handleChange = async (e) => {
-    const value = e.target.value;
-    const url = urls[1].jioUrl + `query=${value}&limit=40&page=1`;
-    const { data } = await fetchData(url);
-    const songsData = await arrangeData(data);
+  handleChange = async (value) => {
+    if (!value.length) {
+      this.setState({ liveSongs: [] });
+      this.setState({ searchString: "" });
+      return;
+    }
+    let songsData = [];
+    for (let i = 1; i <= 2; i++) {
+      const url = urls[1].jioUrl + `query=${value}&limit=40&page=${i}`;
+      const { data } = await fetchData(url);
+      const tempSongs = await arrangeData(data);
+      songsData = songsData.concat(tempSongs);
+    }
     this.setState({ liveSongs: songsData });
     this.setState({ searchString: value });
   };
