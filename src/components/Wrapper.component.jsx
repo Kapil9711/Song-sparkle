@@ -78,12 +78,11 @@ class Wrapper extends Component {
 
   render() {
     const { searchString, globalSongs } = this.state;
+
     let filteredSongs = globalSongs.filter((song) =>
       song.title.toLowerCase().includes(searchString.toLowerCase())
     );
-    if (!filteredSongs.length) {
-      filteredSongs = this.state.liveSongs;
-    }
+    if (this.state.searchString.length) filteredSongs = this.state.liveSongs;
 
     const MainWrapper = styled.div`
       background: linear-gradient(
