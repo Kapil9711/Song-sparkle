@@ -30,6 +30,7 @@ class Wrapper extends Component {
       page: 1,
       index: null,
       searchString: "",
+      liveSongs: [],
     };
   }
 
@@ -39,7 +40,14 @@ class Wrapper extends Component {
     this.setState({ index: i });
   };
 
-  handleChange = (e) => this.setState({ searchString: e.target.value });
+  handleChange = async (e) => {
+    const value = e.target.value;
+    const url = urls[1].jioUrl + `query=${value}&limit=40&page=1`;
+    const { data } = await fetchData(url);
+    const songsData = await arrangeData(data);
+    this.setState({ liveSongs: songsData });
+    this.setState({ searchString: value });
+  };
 
   handleMore = async () => {
     const songsUrl =
@@ -62,9 +70,12 @@ class Wrapper extends Component {
 
   render() {
     const { searchString, globalSongs } = this.state;
-    const filteredSongs = globalSongs.filter((song) =>
+    let filteredSongs = globalSongs.filter((song) =>
       song.title.toLowerCase().includes(searchString.toLowerCase())
     );
+    if (!filteredSongs.length) {
+      filteredSongs = this.state.liveSongs;
+    }
 
     const MainWrapper = styled.div`
       background: linear-gradient(
@@ -97,6 +108,7 @@ class Wrapper extends Component {
               active={this.state.active}
               handleClick={this.handleClick}
               Songs={filteredSongs}
+              liveSongs={this.state.liveSongs}
             />
           ) : (
             <Lottie className="lottie" options={defaultOptions} />

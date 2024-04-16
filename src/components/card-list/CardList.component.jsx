@@ -25,7 +25,14 @@ const ListWrapper = styled.div`
   }
 `;
 
-const CardList = ({ Songs, handleClick, active, handleMore, page }) => {
+const CardList = ({
+  Songs,
+  handleClick,
+  active,
+  handleMore,
+  page,
+  liveSongs,
+}) => {
   return (
     <ListWrapper>
       {/* <Typography variant="h1" sx={{ fontFamily: "Dancing Script, cursive" }}>
@@ -43,7 +50,7 @@ const CardList = ({ Songs, handleClick, active, handleMore, page }) => {
           id={song.id}
         />
       ))}
-      {page <= 3 ? (
+      {page <= 3 && !liveSongs.length ? (
         <Stack
           sx={{ cursor: "pointer" }}
           onClick={handleMore}
