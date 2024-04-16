@@ -303,7 +303,7 @@ Error generating stack: `+ot.message+`
   top: 1px;
   margin: 0 auto;
   z-index: 10000;
-`,SearchBar=({handleChange:s})=>{var o="";const a=et=>{let tt=et.target.value;(()=>{clearTimeout(o),o=setTimeout(function(){s(tt)},1e3)})()};return jsxRuntimeExports.jsx(SearchWrapper,{children:jsxRuntimeExports.jsx(TextField$1,{onChange:a,label:"Search",variant:"filled",sx:{background:"linear-gradient(to right,hsl(0 70% 100% /1),hsl(0 70% 100% /.9))",width:"min(99%, 776px)"}})})},Div=ut.div`
+`,SearchBar=({handleChange:s})=>{var o="";const a=et=>{let tt=et.target.value;(()=>{clearTimeout(o),o=setTimeout(function(){s(tt)},500)})()};return jsxRuntimeExports.jsx(SearchWrapper,{children:jsxRuntimeExports.jsx(TextField$1,{onChange:a,label:"Search",variant:"filled",sx:{background:"linear-gradient(to right,hsl(0 70% 100% /1),hsl(0 70% 100% /.9))",width:"min(99%, 776px)"}})})},Div=ut.div`
   & .lottie {
     @media (min-width: 776px) {
       & {
