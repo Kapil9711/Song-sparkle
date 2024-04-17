@@ -10,7 +10,6 @@ import { skiptoNext, skipBack } from "../../assets/Utility/Utility.components";
 import ImageComponent from "../card/Image.component";
 
 const PlayerContainer = styled.div`
-  background: linear-gradient(hsl(0 0% 0% /0.7), hsl(0 0% 0% /0.7));
   border: solid hsl(334, 100%, 80%);
   max-width: 776px;
   margin: 0 auto;
@@ -117,7 +116,12 @@ const Player = ({
   };
 
   return (
-    <PlayerContainer className="player_container">
+    <PlayerContainer
+      style={{
+        background: `linear-gradient(hsl(0 0% 0% /0.8), hsl(0 0% 0% /0.8)),url(${currentSong.image})`,
+      }}
+      className="player_container"
+    >
       <div className="title">
         <ImageComponent image={currentSong.image} isActive={isplaying} />
       </div>

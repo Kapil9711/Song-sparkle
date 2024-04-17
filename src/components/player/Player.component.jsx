@@ -4,16 +4,20 @@ import { useEffect } from "react";
 import Player from "./Player";
 import { skiptoNext } from "../../assets/Utility/Utility.components";
 const CardWrapper = styled.div`
-  position: fixed;
-  z-index: 1000;
   & .player-wrapper {
     position: fixed;
-    width: fit-content;
-    bottom: 40px;
+    z-index: 1000;
+    width: 100%;
+    bottom: 38px;
     left: auto;
     right: auto;
     background-color: hsl(334 100% 38% /1);
     box-shadow: 0 -5px 10px hsl(334 100% 10% /0.5);
+  }
+  @media (min-width: 776px) {
+    & .player-wrapper {
+      box-shadow: none;
+    }
   }
   & .audio-wrapper {
     width: 100%;
@@ -49,7 +53,7 @@ const PlayerComponent = ({ filteredSongs, active, handleClick, index }) => {
       <div
         className="player-wrapper"
         style={{
-          background: `linear-gradient(hsl(0 0% 5% /.6 ), hsl(0 0% 0% /.6)),url(${currentSong.image})`,
+          background: `transparent`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "repeat",
