@@ -10,24 +10,25 @@ import { skiptoNext, skipBack } from "../../assets/Utility/Utility.components";
 import ImageComponent from "../card/Image.component";
 
 const PlayerContainer = styled.div`
-  border-radius: 50px;
-  background: linear-gradient(hsl(0 0% 0% /0.5), hsl(0 0% 0% /0.5));
+  border-radius: 4px;
+  background: linear-gradient(hsl(0 0% 0% /0.7), hsl(0 0% 0% /0.7));
   border: solid hsl(334, 100%, 80%);
-  width: 100%;
+  max-width: 776px;
   margin: 0 auto;
   color: rgb(218, 218, 218);
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: transparent;
-  gap: 4px;
+  gap: 8px;
+  padding: 0 2px;
   @media (min-width: 996px) {
     & {
-      width: 50%;
-      gap: 10px;
+      gap: 15px;
+      border: 1px solid hsl(334, 100%, 80%);
       flex-direction: row;
       justify-content: "center";
-      padding: 0rem;
+      padding: 0 5px;
     }
   }
 
@@ -41,10 +42,10 @@ const PlayerContainer = styled.div`
   }
   & .navigation {
     width: 100%;
+    margin-bottom: 24px;
 
     & .navigation_wrapper {
       min-width: 100%;
-
       background-color: rgba(119, 119, 119, 0.781);
       height: 8px;
       border-radius: 30px;
@@ -62,10 +63,17 @@ const PlayerContainer = styled.div`
     font-size: inherit;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 4px;
+    @media (min-width: 776px) {
+      & {
+        gap: 30px;
+      }
+    }
 
     & .btn_action {
-      font-size: 2.5rem;
-      margin: 0 1rem;
+      font-size: 2rem;
       cursor: pointer;
 
       &:hover {
@@ -112,14 +120,19 @@ const Player = ({
     <PlayerContainer className="player_container">
       <div className="title">
         <ImageComponent image={currentSong.image} isActive={isplaying} />
-        {/* {window.innerWidth > 776 ? (
-          <ImageComponent image={currentSong.image} isActive={isplaying} />
-        ) : (
-          <p>{currentSong.title}</p>
-        )} */}
       </div>
 
       <div className="navigation">
+        <p
+          style={{
+            textAlign: "center",
+            marginBottom: "10px",
+            color: "white",
+          }}
+        >
+          {currentSong.title}
+        </p>
+
         <div className="navigation_wrapper" onClick={checkWidth} ref={clickRef}>
           <div
             className="seek_bar"
@@ -145,7 +158,13 @@ const Player = ({
         <BsFillSkipEndCircleFill
           className="btn_action"
           onClick={() =>
-            skiptoNext({ songs, handleClick, setCurrentSong, index, audioElem })
+            skiptoNext({
+              songs,
+              handleClick,
+              setCurrentSong,
+              index,
+              audioElem,
+            })
           }
         />
       </div>

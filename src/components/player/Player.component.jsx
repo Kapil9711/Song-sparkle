@@ -49,12 +49,11 @@ const PlayerComponent = ({ filteredSongs, active, handleClick, index }) => {
       <div
         className="player-wrapper"
         style={{
-          background: `linear-gradient(hsl(0 0% 5% /.9 ), hsl(0 0% 0% /.8 )),url(${currentSong.image})`,
+          background: `linear-gradient(hsl(0 0% 5% /.6 ), hsl(0 0% 0% /.6)),url(${currentSong.image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "repeat",
           padding: "2px",
-          borderRadius: window.innerWidth < 776 ? "50px" : "0px",
         }}
       >
         <audio
