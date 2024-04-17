@@ -94,12 +94,12 @@ class Wrapper extends Component {
           hsl(0 0% 20% /0.7)
         ),
         url(${this.state.currentImage || filteredSongs[0]?.image});
-      background-position: center;
+      background-position: top;
       background-attachment: fixed;
       object-fit: cover;
       padding-top: 90px;
       padding-bottom: 120px;
-      min-height: 100svh;
+      min-height: 100lvh;
       position: relative;
       z-index: 1;
     `;
