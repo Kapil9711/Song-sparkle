@@ -130,7 +130,7 @@ const Player = ({
             color: "white",
           }}
         >
-          {currentSong.title}
+          {currentSong.title.slice(0, 14)}
         </p>
 
         <div className="navigation_wrapper" onClick={checkWidth} ref={clickRef}>
