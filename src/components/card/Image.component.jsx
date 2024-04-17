@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 const ImageWrapper = styled.img`
   display: block;
-  width: 78px;
-  height: 78px;
+  width: 77px;
+  height: 77px;
   border-radius: 100%;
   &.active {
     animation: 10s linear infinite rotate forwards;
