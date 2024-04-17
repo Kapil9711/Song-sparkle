@@ -99,7 +99,7 @@ class Wrapper extends Component {
       object-fit: cover;
       padding-top: 90px;
       padding-bottom: 120px;
-      min-height: 100lvh;
+      min-height: 100dvh;
       position: relative;
       z-index: 1;
     `;
