@@ -6,7 +6,7 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 const ListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 
   & .down-arow {
     animation: 2s linear infinite moveDown forwards;
