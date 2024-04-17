@@ -1,15 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
-
 
 *{
   box-sizing: border-box;
   margin: 0;
   padding:0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
 }
 body{
   background: hsl(346, 95%, 75%);
-  font-family: sans-serif;
-  
 }
 
 .gradient:after {

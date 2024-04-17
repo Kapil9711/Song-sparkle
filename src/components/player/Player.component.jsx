@@ -8,8 +8,8 @@ const CardWrapper = styled.div`
   z-index: 1000;
   & .player-wrapper {
     position: fixed;
-    width: 100%;
-    bottom: 0;
+    width: fit-content;
+    bottom: 40px;
     left: auto;
     right: auto;
     background-color: hsl(334 100% 38% /1);
