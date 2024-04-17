@@ -20,7 +20,7 @@ const ListWrapper = styled.div`
       transform: scale(1.1);
     }
     100% {
-      transform: scale(0.8);
+      transform: scale(0.9);
     }
   }
 `;
@@ -35,9 +35,6 @@ const CardList = ({
 }) => {
   return (
     <ListWrapper>
-      {/* <Typography variant="h1" sx={{ fontFamily: "Dancing Script, cursive" }}>
-        Songs Sparkle
-      </Typography> */}
       {Songs.map((song, i) => (
         <Card
           i={i}

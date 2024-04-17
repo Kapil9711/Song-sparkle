@@ -10,7 +10,7 @@ import { skiptoNext, skipBack } from "../../assets/Utility/Utility.components";
 import ImageComponent from "../card/Image.component";
 
 const PlayerContainer = styled.div`
-  border-radius: 4px;
+  border-radius: 1px 1px 15px 15px;
   background: linear-gradient(hsl(0 0% 0% /0.7), hsl(0 0% 0% /0.7));
   border: solid hsl(334, 100%, 80%);
   max-width: 776px;
