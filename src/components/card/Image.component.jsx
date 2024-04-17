@@ -12,14 +12,9 @@ const ImageWrapper = styled.img`
   @keyframes rotate {
     0% {
       transform: rotate(0deg);
-      opacity: 0.9;
-    }
-    50% {
-      opacity: 0.7;
     }
     100% {
       transform: rotate(360deg);
-      opacity: 1;
     }
   }
 `;
@@ -27,7 +22,7 @@ const ImageWrapper = styled.img`
 const ImageComponent = ({ active, image, id, isActive }) => {
   return (
     <ImageWrapper
-      className={active === id || isActive ? "active" : ""}
+      className={(active === id && active) || isActive ? "active" : ""}
       src={image}
       alt=""
     />

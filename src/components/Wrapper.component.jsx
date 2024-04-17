@@ -41,6 +41,8 @@ class Wrapper extends Component {
   };
 
   handleChange = async (value) => {
+    this.setState({ active: "" });
+    this.setState({ index: 0 });
     if (!value.length) {
       this.setState({ liveSongs: [] });
       this.setState({ searchString: "" });
