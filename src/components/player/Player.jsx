@@ -29,6 +29,7 @@ const PlayerContainer = styled.div`
       flex-direction: row;
       justify-content: "center";
       padding: 0 5px;
+      border-radius: 0;
     }
   }
 
