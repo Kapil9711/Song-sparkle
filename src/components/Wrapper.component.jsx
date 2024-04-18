@@ -95,13 +95,11 @@ class Wrapper extends Component {
   render() {
     const { globalSongs } = this.state;
     let filteredSongs = [];
-    if (
-      this.props.currentPath === "" &&
-      Object.keys(this.state.globalSongs).length
-    ) {
+    if (this.props.currentPath === "" && Object.keys(globalSongs).length > 2) {
       filteredSongs = globalSongs[this.props.activePlaylist];
     }
     if (this.state.searchString.length) filteredSongs = this.state.liveSongs;
+    if (!filteredSongs) filteredSongs = [];
     const MainWrapper = styled.div`
       background: linear-gradient(
           to right,
@@ -109,7 +107,9 @@ class Wrapper extends Component {
           hsl(0 0% 20% /0.7),
           hsl(0 0% 20% /0.7)
         ),
-        url(${this.state.currentImage || filteredSongs[0]?.image});
+        url(${filteredSongs
+          ? this.state.currentImage || filteredSongs[0]?.image
+          : ""});
       background-position: top;
       background-attachment: fixed;
       object-fit: cover;
@@ -126,7 +126,7 @@ class Wrapper extends Component {
         <MainWrapper
           className={this.state.active.length ? "gradient-light" : ""}
         >
-          {Object.keys(this.state.globalSongs).length ? (
+          {filteredSongs.length ? (
             <CardList
               page={this.state.page}
               handleMore={this.handleMore}
