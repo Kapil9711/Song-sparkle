@@ -357,7 +357,7 @@ Error generating stack: `+ot.message+`
   top: 1px;
   margin: 0 auto;
   z-index: 10000;
-`,SearchBar=({handleChange:s})=>{const{pathname:o}=useLocation(),{currentPath:a}=getPaths(o);var et="";const tt=ot=>{let ft=ot.target.value;(()=>{clearTimeout(et),et=setTimeout(function(){s(ft)},500)})()};return jsxRuntimeExports.jsx(SearchWrapper,{style:a==="search"?{display:"flex"}:{display:"none"},children:jsxRuntimeExports.jsx(TextField$1,{onChange:tt,label:"Search",variant:"filled",sx:{background:"linear-gradient(to right,hsl(0 70% 100% /1),hsl(0 70% 100% /.9))",width:"min(99%, 776px)"}})})},Div=ut.div`
+`,SearchBar=({handleChange:s})=>{const{pathname:o}=useLocation(),{currentPath:a}=getPaths(o);var et="";const tt=ot=>{let ft=ot.target.value;(()=>{clearTimeout(et),et=setTimeout(function(){s(ft)},300)})()};return jsxRuntimeExports.jsx(SearchWrapper,{style:a==="search"?{display:"flex"}:{display:"none"},children:jsxRuntimeExports.jsx(TextField$1,{onChange:tt,label:"Search",variant:"filled",sx:{background:"linear-gradient(to right,hsl(0 70% 100% /1),hsl(0 70% 100% /.9))",width:"min(99%, 776px)"}})})},Div=ut.div`
   & .lottie {
     @media (min-width: 776px) {
       & {
