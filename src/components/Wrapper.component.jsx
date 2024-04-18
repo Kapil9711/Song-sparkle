@@ -28,7 +28,7 @@ class Wrapper extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      globalSongs: [],
+      globalSongs: {},
       currentSong: false,
       currentImage: "",
       active: "",
@@ -36,6 +36,11 @@ class Wrapper extends Component {
       index: null,
       searchString: "",
       liveSongs: [],
+      playlist: {
+        hindi: "1086610941",
+        punjabi: "1213312001",
+        haryanvi: "1134770917",
+      },
     };
     this.props = props;
   }
@@ -65,34 +70,36 @@ class Wrapper extends Component {
     this.setState({ searchString: value });
   };
 
-  handleMore = async () => {
-    const songsUrl =
-      urls[1].jioUrl + `query=hindi-songs&limit=40&page=${this.state.page}`;
-    const { data } = await fetchData(songsUrl);
-    let songsData = await arrangeData(data);
-    this.setState({ globalSongs: this.state.globalSongs.concat(songsData) });
-    this.setState({ page: this.state.page + 1 });
-  };
+  // handleMore = async () => {
+  //   const songsUrl =
+  //     urls[1].jioUrl + `query=hindi-songs&limit=40&page=${this.state.page}`;
+  //   const { data } = await fetchData(songsUrl);
+  //   let songsData = await arrangeData(data);
+  //   this.setState({ globalSongs: this.state.globalSongs.concat(songsData) });
+  //   this.setState({ page: this.state.page + 1 });
+  // };
 
   async componentDidMount() {
-    const playlist = "https://saavn.dev/api/playlists?id=1086610941&limit=100";
-    // const songsUrl =
-    //   urls[1].jioUrl + `query=hindi-songs&limit=40&page=${this.state.page}`;
-    // const { data } = await fetchData(songsUrl);
-    // const songsData = await arrangeData(data);
-    const data = await fetchData(playlist);
-    const songsData = await arrangeData({ results: data.data.songs });
-    this.setState({ globalSongs: songsData });
+    const allPlaylists = {};
+    for (let ids in this.state.playlist) {
+      const id = this.state.playlist[ids];
+      const playlist = `https://saavn.dev/api/playlists?id=${id}&limit=100`;
+      const data = await fetchData(playlist);
+      const songsData = await arrangeData({ results: data.data.songs });
+      allPlaylists[ids] = songsData;
+    }
+    this.setState({ globalSongs: allPlaylists });
     this.setState({ page: this.state.page + 1 });
   }
 
   render() {
-    const { searchString, globalSongs } = this.state;
+    const { globalSongs } = this.state;
     let filteredSongs = [];
-    if (this.props.currentPath === "") {
-      filteredSongs = globalSongs.filter((song) =>
-        song.title.toLowerCase().includes(searchString.toLowerCase())
-      );
+    if (
+      this.props.currentPath === "" &&
+      Object.keys(this.state.globalSongs).length
+    ) {
+      filteredSongs = globalSongs[this.props.activePlaylist];
     }
     if (this.state.searchString.length) filteredSongs = this.state.liveSongs;
     const MainWrapper = styled.div`
@@ -119,7 +126,7 @@ class Wrapper extends Component {
         <MainWrapper
           className={this.state.active.length ? "gradient-light" : ""}
         >
-          {this.state.globalSongs.length ? (
+          {Object.keys(this.state.globalSongs).length ? (
             <CardList
               page={this.state.page}
               handleMore={this.handleMore}
@@ -131,13 +138,6 @@ class Wrapper extends Component {
           ) : (
             <Lottie className="lottie" options={defaultOptions} />
           )}
-
-          {!this.state.liveSongs.length && this.state.searchString.length ? (
-            <Lottie className="lottie" options={defaultOptions} />
-          ) : (
-            ""
-          )}
-
           {filteredSongs.length ? (
             <PlayerComponent
               index={this.state.index}
