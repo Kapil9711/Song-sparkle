@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "home":"https://kapil9711.github.io/Song-sparkle",
+  "home": "https://kapil9711.github.io/Song-sparkle",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -24,7 +24,7 @@
     "react-icons": "^4.3.1",
     "react-lottie": "^1.2.4",
     "react-router-dom": "^6.22.3",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "sass": "^1.51.0",
     "styled-components": "^6.1.8",
     "web-vitals": "^2.1.4"

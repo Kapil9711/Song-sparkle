@@ -2,7 +2,12 @@ import { Component } from "react";
 import Lottie from "react-lottie";
 import { urls, defaultOptions } from "./Data/data";
 import styled from "styled-components";
-import { fetchData, arrangeData } from "../assets/Utility/Utility.components";
+import {
+  fetchData,
+  arrangeData,
+  getPaths,
+} from "../assets/Utility/Utility.components";
+import { useLocation } from "react-router-dom";
 
 import CardList from "./card-list/CardList.component";
 import PlayerComponent from "./player/Player.component";
@@ -20,8 +25,8 @@ const Div = styled.div`
 `;
 
 class Wrapper extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       globalSongs: [],
       currentSong: false,
@@ -32,6 +37,7 @@ class Wrapper extends Component {
       searchString: "",
       liveSongs: [],
     };
+    this.props = props;
   }
 
   handleClick = (id, image, i) => {
@@ -69,23 +75,26 @@ class Wrapper extends Component {
   };
 
   async componentDidMount() {
-    const songsUrl =
-      urls[1].jioUrl + `query=hindi-songs&limit=40&page=${this.state.page}`;
-    const { data } = await fetchData(songsUrl);
-    const songsData = await arrangeData(data);
-    // this.setState({ globalSongs: this.state.globalSongs.concat(songsData) });
+    const playlist = "https://saavn.dev/api/playlists?id=1086610941&limit=100";
+    // const songsUrl =
+    //   urls[1].jioUrl + `query=hindi-songs&limit=40&page=${this.state.page}`;
+    // const { data } = await fetchData(songsUrl);
+    // const songsData = await arrangeData(data);
+    const data = await fetchData(playlist);
+    const songsData = await arrangeData({ results: data.data.songs });
     this.setState({ globalSongs: songsData });
     this.setState({ page: this.state.page + 1 });
   }
 
   render() {
     const { searchString, globalSongs } = this.state;
-
-    let filteredSongs = globalSongs.filter((song) =>
-      song.title.toLowerCase().includes(searchString.toLowerCase())
-    );
+    let filteredSongs = [];
+    if (this.props.currentPath === "") {
+      filteredSongs = globalSongs.filter((song) =>
+        song.title.toLowerCase().includes(searchString.toLowerCase())
+      );
+    }
     if (this.state.searchString.length) filteredSongs = this.state.liveSongs;
-
     const MainWrapper = styled.div`
       background: linear-gradient(
           to right,
@@ -98,7 +107,7 @@ class Wrapper extends Component {
       background-attachment: fixed;
       object-fit: cover;
       padding-top: 90px;
-      padding-bottom: 120px;
+      padding-bottom: 150px;
       min-height: 100dvh;
       position: relative;
       z-index: 1;
@@ -110,7 +119,7 @@ class Wrapper extends Component {
         <MainWrapper
           className={this.state.active.length ? "gradient-light" : ""}
         >
-          {filteredSongs.length ? (
+          {this.state.globalSongs.length ? (
             <CardList
               page={this.state.page}
               handleMore={this.handleMore}
@@ -121,6 +130,12 @@ class Wrapper extends Component {
             />
           ) : (
             <Lottie className="lottie" options={defaultOptions} />
+          )}
+
+          {!this.state.liveSongs.length && this.state.searchString.length ? (
+            <Lottie className="lottie" options={defaultOptions} />
+          ) : (
+            ""
           )}
 
           {filteredSongs.length ? (

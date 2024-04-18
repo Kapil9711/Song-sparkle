@@ -82,5 +82,18 @@ const skiptoNext = (data) => {
   }
   audioElem.current.currentTime = 0;
 };
+const getPaths = (path) => {
+  const pathsArr = path.trim().split("/");
+  const basePath = "/" + pathsArr.slice(0, -1).join("") + "/";
+  const currentPath = pathsArr[pathsArr.length - 1];
+  return { basePath, currentPath };
+};
 
-export { fetchData, arrangeData, createDownloadLink, skiptoNext, skipBack };
+export {
+  fetchData,
+  arrangeData,
+  createDownloadLink,
+  skiptoNext,
+  skipBack,
+  getPaths,
+};

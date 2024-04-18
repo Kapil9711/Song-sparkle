@@ -1,17 +1,25 @@
 import * as React from "react";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import FolderIcon from "@mui/icons-material/Folder";
-import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 import BottomNavigationWrapper from "./Navigation-Bar.styles";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+import SearchIcon from "@mui/icons-material/Search";
 import { Stack } from "@mui/material";
+import { useNavigate, useLocation } from "react-router-dom";
+import { getPaths } from "../../assets/Utility/Utility.components";
 
 export default function LabelBottomNavigation() {
-  const [value, setValue] = React.useState("recents");
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
+  const [value, setValue] = React.useState("Trending");
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    const { basePath } = getPaths(pathname);
+    if (newValue === "Trending") navigate(basePath);
+    else if (newValue === "Favorites")
+      navigate(basePath + newValue.toLowerCase());
+    else navigate(basePath + newValue.toLowerCase());
   };
 
   return (
@@ -26,27 +34,21 @@ export default function LabelBottomNavigation() {
       >
         <BottomNavigationAction
           sx={{ color: "white" }}
-          label="Recents"
-          value="recents"
-          icon={<RestoreIcon />}
+          label="Trending"
+          value="Trending"
+          icon={<WhatshotIcon />}
         />
         <BottomNavigationAction
           sx={{ color: "white" }}
           label="Favorites"
-          value="favorites"
+          value="Favorites"
           icon={<FavoriteIcon />}
         />
         <BottomNavigationAction
           sx={{ color: "white" }}
-          label="Nearby"
-          value="nearby"
-          icon={<LocationOnIcon />}
-        />
-        <BottomNavigationAction
-          sx={{ color: "white" }}
-          label="Folder"
-          value="folder"
-          icon={<FolderIcon />}
+          label="Search"
+          value="Search"
+          icon={<SearchIcon />}
         />
       </BottomNavigationWrapper>
     </Stack>

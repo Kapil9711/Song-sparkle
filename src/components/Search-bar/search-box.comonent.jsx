@@ -1,5 +1,7 @@
 import { TextField } from "@mui/material";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
+import { getPaths } from "../../assets/Utility/Utility.components";
 const SearchWrapper = styled.div`
   width: min(100%);
   display: flex;
@@ -11,6 +13,8 @@ const SearchWrapper = styled.div`
 `;
 
 const SearchBar = ({ handleChange }) => {
+  const { pathname } = useLocation();
+  const { currentPath } = getPaths(pathname);
   var timer = "";
   const delayWrapper = (e) => {
     let value = e.target.value;
@@ -23,7 +27,11 @@ const SearchBar = ({ handleChange }) => {
     delay();
   };
   return (
-    <SearchWrapper>
+    <SearchWrapper
+      style={
+        currentPath === "search" ? { display: "flex" } : { display: "none" }
+      }
+    >
       <TextField
         onChange={delayWrapper}
         label="Search"

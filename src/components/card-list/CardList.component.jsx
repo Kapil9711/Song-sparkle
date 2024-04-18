@@ -50,7 +50,7 @@ const CardList = ({
           id={song.id}
         />
       ))}
-      {page <= 3 && !liveSongs.length ? (
+      {/* {page <= 3 && !liveSongs.length ? (
         <Stack
           sx={{ cursor: "pointer" }}
           onClick={handleMore}
@@ -67,7 +67,7 @@ const CardList = ({
         </Stack>
       ) : (
         ""
-      )}
+      )} */}
     </ListWrapper>
   );
 };
