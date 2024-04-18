@@ -22,7 +22,7 @@ const SearchBar = ({ handleChange }) => {
       clearTimeout(timer);
       timer = setTimeout(function () {
         handleChange(value);
-      }, 500);
+      }, 300);
     };
     delay();
   };
