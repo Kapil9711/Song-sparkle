@@ -47,7 +47,7 @@ const CardList = ({
           color: "white",
           textAlign: "center",
           marginBottom: "30px",
-          fontSize: "1.3rem",
+          fontSize: "1.4rem",
         }}
       >
         Favorite Songs List From All Users
