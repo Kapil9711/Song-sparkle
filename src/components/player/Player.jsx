@@ -8,6 +8,7 @@ import {
 } from "react-icons/bs";
 import { skiptoNext, skipBack } from "../../assets/Utility/Utility.components";
 import ImageComponent from "../card/Image.component";
+import { useMediaSession } from "@mebtte/react-media-session";
 
 const PlayerContainer = styled.div`
   border: solid hsl(334, 100%, 80%);
@@ -102,16 +103,30 @@ const Player = ({
   index,
 }) => {
   const clickRef = useRef();
-  document.addEventListener("pause", () => {
-    setisplaying(false);
-  });
-  document.addEventListener("play", () => {
-    setisplaying(true);
-  });
 
   const PlayPause = () => {
     setisplaying(!isplaying);
   };
+
+  useMediaSession({
+    title: "Way back",
+    artist: "Vicetone,Cozi Zuehlsdorff",
+    album: "Way Back",
+    artwork: [
+      {
+        src: "cover_large.jpeg",
+        sizes: "256x256,384x384,512x512",
+        type: "image/jpeg",
+      },
+      {
+        src: "cover_small.jpeg",
+        sizes: "96x96,128x128,192x192",
+        type: "image/jpeg",
+      },
+    ],
+    onPlay: setisplaying(true),
+    onPause: setisplaying(false),
+  });
 
   const checkWidth = (e) => {
     let width = clickRef.current.clientWidth;
