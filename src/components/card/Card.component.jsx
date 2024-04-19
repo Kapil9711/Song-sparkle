@@ -7,7 +7,6 @@ import {
 } from "../../assets/Utility/Utility.components";
 import MediaContent from "./MediaContent.component";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import axios from "axios";
 
 const CardWrapper = styled(Stack)`
   background: linear-gradient(
@@ -44,7 +43,7 @@ const Card = ({
   hanldeFavoriteSongs,
 }) => {
   const handleClick1 = async () => {
-    await createFavorite(id);
+    if (!FavoriteSongs.includes(id)) await createFavorite(id);
     await hanldeFavoriteSongs();
   };
   return (
