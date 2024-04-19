@@ -108,6 +108,37 @@ const Player = ({
     setisplaying(!isplaying);
   };
 
+  if ("mediaSession" in navigator) {
+    navigator.mediaSession.setActionHandler("play", () => {
+      setisplaying(!isplaying);
+    });
+    navigator.mediaSession.setActionHandler("pause", () => {
+      setisplaying(!isplaying);
+    });
+  }
+  if ("mediaSession" in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: currentSong.title,
+      artwork: [
+        { src: currentSong.image, sizes: "128x128", type: "image/png" },
+      ],
+    });
+  }
+  if ("mediaSession" in navigator) {
+    navigator.mediaSession.setActionHandler("previoustrack", () => {
+      skipBack({ songs, handleClick, setCurrentSong, index, audioElem });
+    });
+    navigator.mediaSession.setActionHandler("nexttrack", () => {
+      skiptoNext({
+        songs,
+        handleClick,
+        setCurrentSong,
+        index,
+        audioElem,
+      });
+    });
+  }
+
   const checkWidth = (e) => {
     let width = clickRef.current.clientWidth;
     const offset = e.nativeEvent.offsetX;
