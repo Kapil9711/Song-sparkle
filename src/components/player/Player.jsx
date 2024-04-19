@@ -145,31 +145,6 @@ const Player = ({
       }}
       className="player_container"
     >
-      <MediaSession
-        title="Way back"
-        artist="Vicetone,Cozi Zuehlsdorff"
-        album="Way Back"
-        artwork={[
-          {
-            src: "cover_large.jpeg",
-            sizes: "256x256,384x384,512x512",
-            type: "image/jpeg",
-          },
-          {
-            src: "cover_small.jpeg",
-            sizes: "96x96,128x128,192x192",
-            type: "image/jpeg",
-          },
-        ]}
-        onPlay={audio.play}
-        onPause={audio.pause}
-        onSeekBackward={onSeekBackward}
-        onSeekForward={onSeekForward}
-        onPreviousTrack={playPreviousMusic}
-        onNextTrack={playNextMusic}
-      >
-        children or null
-      </MediaSession>
       ;
       <div className="title">
         <ImageComponent image={currentSong.image} isActive={isplaying} />
