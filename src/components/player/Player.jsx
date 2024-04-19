@@ -116,28 +116,6 @@ const Player = ({
     audioElem.current.currentTime = (divprogress / 100) * currentSong.length;
   };
 
-  <MediaSession
-    title="Way back"
-    artist="Vicetone,Cozi Zuehlsdorff"
-    album="Way Back"
-    artwork={[
-      {
-        src: "cover_large.jpeg",
-        sizes: "256x256,384x384,512x512",
-        type: "image/jpeg",
-      },
-      {
-        src: "cover_small.jpeg",
-        sizes: "96x96,128x128,192x192",
-        type: "image/jpeg",
-      },
-    ]}
-    onPlay={setCurrentSong(!isplaying)}
-    onPause={setCurrentSong(!isplaying)}
-  >
-    children or null
-  </MediaSession>;
-
   return (
     <PlayerContainer
       style={{
@@ -145,7 +123,6 @@ const Player = ({
       }}
       className="player_container"
     >
-      ;
       <div className="title">
         <ImageComponent image={currentSong.image} isActive={isplaying} />
       </div>
