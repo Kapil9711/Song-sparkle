@@ -37,9 +37,21 @@ const CardList = ({
   liveSongs,
   FavoriteSongs,
   hanldeFavoriteSongs,
+  FavoritePage,
 }) => {
   return (
     <ListWrapper>
+      <h1
+        style={{
+          display: FavoritePage ? "initial" : "none",
+          color: "white",
+          textAlign: "center",
+          marginBottom: "30px",
+          fontSize: "1.3rem",
+        }}
+      >
+        Favorite Songs List From All Users
+      </h1>
       {Songs.map((song, i) => (
         <Card
           i={i}

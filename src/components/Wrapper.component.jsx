@@ -90,14 +90,25 @@ class Wrapper extends Component {
       if (ele.songId) idArr.push(ele.songId);
     }
     this.setState({ FavoriteSongs: idArr });
+
+    if (this.props.FavoritePage) {
+      const url = `https://saavn.dev/api/songs/`;
+      let dataList = [];
+      for (let id of idArr) {
+        const data = await axios.get(url + id);
+        const songsData = await arrangeData({ results: data.data.data });
+        dataList = dataList.concat(songsData);
+      }
+      this.setState({ favoriteSongs: dataList });
+    }
   };
 
   async componentDidMount() {
-    const favData = await axios.get(this.state.serverUrl + "/getFavorite");
-    const idArr = [];
-    for (let ele of favData.data) {
-      if (ele.songId) idArr.push(ele.songId);
-    }
+    // const favData = await axios.get(this.state.serverUrl + "/getFavorite");
+    // const idArr = [];
+    // for (let ele of favData.data) {
+    //   if (ele.songId) idArr.push(ele.songId);
+    // }
     const allPlaylists = {};
     if (!this.props.FavoritePage && !this.props.searchPage)
       for (let ids in this.state.playlist) {
@@ -108,6 +119,12 @@ class Wrapper extends Component {
         allPlaylists[ids] = songsData;
         this.setState({ globalSongs: allPlaylists });
       }
+
+    const favData = await axios.get(this.state.serverUrl + "/getFavorite");
+    const idArr = [];
+    for (let ele of favData.data) {
+      if (ele.songId) idArr.push(ele.songId);
+    }
 
     if (this.props.FavoritePage) {
       const url = `https://saavn.dev/api/songs/`;
@@ -171,6 +188,7 @@ class Wrapper extends Component {
               Songs={filteredSongs}
               liveSongs={this.state.liveSongs}
               hanldeFavoriteSongs={this.hanldeFavoriteSongs}
+              FavoritePage={this.props.FavoritePage}
             />
           ) : (
             <Lottie className="lottie" options={defaultOptions} />
