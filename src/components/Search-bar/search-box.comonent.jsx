@@ -34,7 +34,7 @@ const SearchBar = ({ handleChange }) => {
     >
       <TextField
         onChange={delayWrapper}
-        label="Search"
+        label="Search (songs/singerName)"
         variant="filled"
         sx={{
           background:

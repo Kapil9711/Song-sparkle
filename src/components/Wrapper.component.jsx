@@ -99,7 +99,7 @@ class Wrapper extends Component {
       if (ele.songId) idArr.push(ele.songId);
     }
     const allPlaylists = {};
-    if (!this.props.FavoritePage)
+    if (!this.props.FavoritePage && !this.props.searchPage)
       for (let ids in this.state.playlist) {
         const id = this.state.playlist[ids];
         const playlist = `https://saavn.dev/api/playlists?id=${id}&limit=100`;
@@ -160,7 +160,8 @@ class Wrapper extends Component {
         <MainWrapper
           className={this.state.active.length ? "gradient-light" : ""}
         >
-          {filteredSongs.length && this.state.FavoriteSongs.length ? (
+          {(filteredSongs.length && this.state.FavoriteSongs.length) ||
+          this.props.searchPage ? (
             <CardList
               FavoriteSongs={this.state.FavoriteSongs}
               page={this.state.page}
