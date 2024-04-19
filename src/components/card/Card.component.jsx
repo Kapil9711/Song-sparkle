@@ -4,6 +4,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import {
   createDownloadLink,
   createFavorite,
+  deleteFavorite,
 } from "../../assets/Utility/Utility.components";
 import MediaContent from "./MediaContent.component";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -44,6 +45,7 @@ const Card = ({
 }) => {
   const handleClick1 = async () => {
     if (!FavoriteSongs.includes(id)) await createFavorite(id);
+    else await deleteFavorite(id);
     await hanldeFavoriteSongs();
   };
   return (

@@ -101,6 +101,18 @@ const createFavorite = async (id) => {
     },
   });
 };
+const deleteFavorite = async (id) => {
+  return await axios({
+    method: "POST",
+    url: "https://songsserver.onrender.com/api/song-sparkle/deleteFavorite",
+    headers: {
+      "content-type": "application/json",
+    },
+    data: {
+      songId: id,
+    },
+  });
+};
 
 export {
   fetchData,
@@ -110,4 +122,5 @@ export {
   skipBack,
   getPaths,
   createFavorite,
+  deleteFavorite,
 };
