@@ -35,6 +35,8 @@ const CardList = ({
   handleMore,
   page,
   liveSongs,
+  FavoriteSongs,
+  hanldeFavoriteSongs,
 }) => {
   return (
     <ListWrapper>
@@ -48,6 +50,8 @@ const CardList = ({
           image={song.image}
           key={song.id}
           id={song.id}
+          FavoriteSongs={FavoriteSongs}
+          hanldeFavoriteSongs={hanldeFavoriteSongs}
         />
       ))}
       {/* {page <= 3 && !liveSongs.length ? (

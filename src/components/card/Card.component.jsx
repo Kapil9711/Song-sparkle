@@ -1,8 +1,13 @@
 import { Stack, Button } from "@mui/material";
 import styled from "styled-components";
 import DownloadIcon from "@mui/icons-material/Download";
-import { createDownloadLink } from "../../assets/Utility/Utility.components";
+import {
+  createDownloadLink,
+  createFavorite,
+} from "../../assets/Utility/Utility.components";
 import MediaContent from "./MediaContent.component";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import axios from "axios";
 
 const CardWrapper = styled(Stack)`
   background: linear-gradient(
@@ -27,7 +32,21 @@ const CardWrapper = styled(Stack)`
   }
 `;
 
-const Card = ({ name, url, image, handleClick, id, active, i }) => {
+const Card = ({
+  name,
+  url,
+  image,
+  handleClick,
+  id,
+  active,
+  i,
+  FavoriteSongs,
+  hanldeFavoriteSongs,
+}) => {
+  const handleClick1 = async () => {
+    await createFavorite(id);
+    await hanldeFavoriteSongs();
+  };
   return (
     <CardWrapper
       className={active === id ? "gradient" : ""}
@@ -45,13 +64,28 @@ const Card = ({ name, url, image, handleClick, id, active, i }) => {
         url={url}
       />
       <Button
+        onClick={handleClick1}
+        className="btn"
+        variant="contained"
+        style={{
+          background: "transparent",
+          boxShadow: "none",
+          marginRight: "0px",
+          color: FavoriteSongs.includes(id) ? "hsl(325 100% 60%)" : "white",
+          backgroundColor: "transparent",
+        }}
+      >
+        <FavoriteIcon sx={{ fontSize: "24px" }} />
+      </Button>
+
+      <Button
         onClick={async () => await createDownloadLink({ url, title: name })}
         className="btn"
         variant="contained"
         style={{
           background: "transparent",
           boxShadow: "none",
-          marginRight: "10px",
+          marginRight: "8px",
         }}
       >
         <DownloadIcon sx={{ fontSize: "35px" }} />

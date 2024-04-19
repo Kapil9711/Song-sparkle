@@ -12,6 +12,7 @@ import { useLocation } from "react-router-dom";
 import CardList from "./card-list/CardList.component";
 import PlayerComponent from "./player/Player.component";
 import SearchBar from "./Search-bar/search-box.comonent";
+import axios from "axios";
 
 const Div = styled.div`
   & .lottie {
@@ -41,6 +42,9 @@ class Wrapper extends Component {
         punjabi: "1134543511",
         haryanvi: "1180795852",
       },
+      serverUrl: "https://songsserver.onrender.com/api/song-sparkle",
+      FavoriteSongs: [],
+      favoriteSongs: [],
     };
     this.props = props;
   }
@@ -79,16 +83,44 @@ class Wrapper extends Component {
   //   this.setState({ page: this.state.page + 1 });
   // };
 
-  async componentDidMount() {
-    const allPlaylists = {};
-    for (let ids in this.state.playlist) {
-      const id = this.state.playlist[ids];
-      const playlist = `https://saavn.dev/api/playlists?id=${id}&limit=100`;
-      const data = await fetchData(playlist);
-      const songsData = await arrangeData({ results: data.data.songs });
-      allPlaylists[ids] = songsData;
+  hanldeFavoriteSongs = async () => {
+    const favData = await axios.get(this.state.serverUrl + "/getFavorite");
+    const idArr = [];
+    for (let ele of favData.data) {
+      if (ele.songId) idArr.push(ele.songId);
     }
-    this.setState({ globalSongs: allPlaylists });
+    this.setState({ FavoriteSongs: idArr });
+  };
+
+  async componentDidMount() {
+    const favData = await axios.get(this.state.serverUrl + "/getFavorite");
+    const idArr = [];
+    for (let ele of favData.data) {
+      if (ele.songId) idArr.push(ele.songId);
+    }
+    const allPlaylists = {};
+    if (!this.props.FavoritePage)
+      for (let ids in this.state.playlist) {
+        const id = this.state.playlist[ids];
+        const playlist = `https://saavn.dev/api/playlists?id=${id}&limit=100`;
+        const data = await fetchData(playlist);
+        const songsData = await arrangeData({ results: data.data.songs });
+        allPlaylists[ids] = songsData;
+        this.setState({ globalSongs: allPlaylists });
+      }
+
+    if (this.props.FavoritePage) {
+      const url = `https://saavn.dev/api/songs/`;
+      let dataList = [];
+      for (let id of idArr) {
+        const data = await axios.get(url + id);
+        const songsData = await arrangeData({ results: data.data.data });
+        dataList = dataList.concat(songsData);
+      }
+      this.setState({ favoriteSongs: dataList });
+    }
+
+    this.setState({ FavoriteSongs: idArr });
     this.setState({ page: this.state.page + 1 });
   }
 
@@ -98,6 +130,10 @@ class Wrapper extends Component {
     if (this.props.currentPath === "" && Object.keys(globalSongs).length > 2) {
       filteredSongs = globalSongs[this.props.activePlaylist];
     }
+    if (this.props.FavoritePage) {
+      filteredSongs = this.state.favoriteSongs;
+    }
+
     if (this.state.searchString.length) filteredSongs = this.state.liveSongs;
     if (!filteredSongs) filteredSongs = [];
     const MainWrapper = styled.div`
@@ -124,19 +160,21 @@ class Wrapper extends Component {
         <MainWrapper
           className={this.state.active.length ? "gradient-light" : ""}
         >
-          {filteredSongs.length ? (
+          {filteredSongs.length && this.state.FavoriteSongs.length ? (
             <CardList
+              FavoriteSongs={this.state.FavoriteSongs}
               page={this.state.page}
               handleMore={this.handleMore}
               active={this.state.active}
               handleClick={this.handleClick}
               Songs={filteredSongs}
               liveSongs={this.state.liveSongs}
+              hanldeFavoriteSongs={this.hanldeFavoriteSongs}
             />
           ) : (
             <Lottie className="lottie" options={defaultOptions} />
           )}
-          {filteredSongs.length ? (
+          {filteredSongs.length && this.state.FavoriteSongs.length ? (
             <PlayerComponent
               index={this.state.index}
               handleClick={this.handleClick}

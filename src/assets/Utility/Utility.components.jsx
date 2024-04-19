@@ -89,6 +89,19 @@ const getPaths = (path) => {
   return { basePath, currentPath };
 };
 
+const createFavorite = async (id) => {
+  return await axios({
+    method: "POST",
+    url: "https://songsserver.onrender.com/api/song-sparkle/createFavorite",
+    headers: {
+      "content-type": "application/json",
+    },
+    data: {
+      songId: id,
+    },
+  });
+};
+
 export {
   fetchData,
   arrangeData,
@@ -96,4 +109,5 @@ export {
   skiptoNext,
   skipBack,
   getPaths,
+  createFavorite,
 };
