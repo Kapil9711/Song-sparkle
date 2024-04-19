@@ -102,10 +102,10 @@ const Player = ({
   index,
 }) => {
   const clickRef = useRef();
-  window.document.addEventListener("pause", () => {
+  document.addEventListener("pause", () => {
     setisplaying(false);
   });
-  window.document.addEventListener("play", () => {
+  document.addEventListener("play", () => {
     setisplaying(true);
   });
 
