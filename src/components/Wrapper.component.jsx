@@ -37,9 +37,9 @@ class Wrapper extends Component {
       searchString: "",
       liveSongs: [],
       playlist: {
-        hindi: "1086610941",
-        punjabi: "1213312001",
-        haryanvi: "1134770917",
+        hindi: "110858205",
+        punjabi: "1134543511",
+        haryanvi: "1180795852",
       },
     };
     this.props = props;
@@ -107,9 +107,7 @@ class Wrapper extends Component {
           hsl(0 0% 20% /0.7),
           hsl(0 0% 20% /0.7)
         ),
-        url(${filteredSongs
-          ? this.state.currentImage || filteredSongs[0]?.image
-          : ""});
+        url(${this.state.currentImage || filteredSongs[0]?.image});
       background-position: top;
       background-attachment: fixed;
       object-fit: cover;
