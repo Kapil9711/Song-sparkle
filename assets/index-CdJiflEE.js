@@ -318,7 +318,7 @@ Error generating stack: `+ot.message+`
     }
 
     & .btn_action {
-      font-size: 1.7rem;
+      font-size: 2rem;
       cursor: pointer;
 
       &:hover {
