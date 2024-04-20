@@ -2,12 +2,7 @@ import { Component } from "react";
 import Lottie from "react-lottie";
 import { urls, defaultOptions } from "./Data/data";
 import styled from "styled-components";
-import {
-  fetchData,
-  arrangeData,
-  getPaths,
-} from "../assets/Utility/Utility.components";
-import { useLocation } from "react-router-dom";
+import { fetchData, arrangeData } from "../assets/Utility/Utility.components";
 
 import CardList from "./card-list/CardList.component";
 import PlayerComponent from "./player/Player.component";
@@ -177,8 +172,7 @@ class Wrapper extends Component {
         <MainWrapper
           className={this.state.active.length ? "gradient-light" : ""}
         >
-          {(filteredSongs.length && this.state.FavoriteSongs.length) ||
-          this.props.searchPage ? (
+          {filteredSongs.length || this.props.searchPage ? (
             <CardList
               FavoriteSongs={this.state.FavoriteSongs}
               page={this.state.page}
