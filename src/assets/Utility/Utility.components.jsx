@@ -89,22 +89,13 @@ const getPaths = (path) => {
   return { basePath, currentPath };
 };
 
-const createFavorite = async (id) => {
+const changeFavorite = async (id, isAlreadyExist) => {
+  let url = "https://songsserver.onrender.com/api/song-sparkle";
+  if (isAlreadyExist) url += "/deleteFavorite";
+  else url += "/createFavorite";
   return await axios({
     method: "POST",
-    url: "https://songsserver.onrender.com/api/song-sparkle/createFavorite",
-    headers: {
-      "content-type": "application/json",
-    },
-    data: {
-      songId: id,
-    },
-  });
-};
-const deleteFavorite = async (id) => {
-  return await axios({
-    method: "POST",
-    url: "https://songsserver.onrender.com/api/song-sparkle/deleteFavorite",
+    url,
     headers: {
       "content-type": "application/json",
     },
@@ -121,6 +112,5 @@ export {
   skiptoNext,
   skipBack,
   getPaths,
-  createFavorite,
-  deleteFavorite,
+  changeFavorite,
 };

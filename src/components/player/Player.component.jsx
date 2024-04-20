@@ -1,28 +1,9 @@
-import styled from "styled-components";
 import { useRef, useState } from "react";
 import { useEffect } from "react";
 import Player from "./Player";
 import { skiptoNext } from "../../assets/Utility/Utility.components";
-const CardWrapper = styled.div`
-  & .player-wrapper {
-    position: fixed;
-    z-index: 1000;
-    width: 100%;
-    bottom: 38px;
-    left: auto;
-    right: auto;
-    background-color: hsl(334 100% 38% /1);
-    box-shadow: 0 -5px 10px hsl(334 100% 10% /0.5);
-  }
-  @media (min-width: 776px) {
-    & .player-wrapper {
-      box-shadow: none;
-    }
-  }
-  & .audio-wrapper {
-    width: 100%;
-  }
-`;
+import CardWrapper from "./Player.component.styles";
+
 const PlayerComponent = ({ filteredSongs, active, handleClick, index }) => {
   const audioElem = useRef();
   const [songs, setSongs] = useState(filteredSongs);
@@ -50,16 +31,7 @@ const PlayerComponent = ({ filteredSongs, active, handleClick, index }) => {
   };
   return (
     <CardWrapper>
-      <div
-        className="player-wrapper"
-        style={{
-          background: `transparent`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "repeat",
-          padding: "2px",
-        }}
-      >
+      <div className="player-wrapper">
         <audio
           autoPlay
           onEnded={() =>

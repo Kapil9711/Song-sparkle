@@ -1,51 +1,29 @@
-import { Stack, Button } from "@mui/material";
-import styled from "styled-components";
-import DownloadIcon from "@mui/icons-material/Download";
+// *************************importing section started *******************
+
+import { DownloadBtn, FavoriteBtn } from "./Buttons.component";
 import {
   createDownloadLink,
-  createFavorite,
-  deleteFavorite,
+  changeFavorite,
 } from "../../assets/Utility/Utility.components";
+import CardWrapper from "./card.styled";
 import MediaContent from "./MediaContent.component";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 
-const CardWrapper = styled(Stack)`
-  background: linear-gradient(
-    to right,
-    hsl(0 0% 0% /0.65),
-    hsl(0 0% 5% /0.6),
-    hsl(0 0% 0% /0.65)
-  );
-  /* border: 1px solid black; */
+// *************************importing section ended *******************
 
-  border-radius: 50px;
-  width: min(99%, 776px);
-  margin: 0 auto;
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  z-index: 1;
-
-  &.gradient {
-    border: 1px solid
-      color-mix(in srgb, hsl(10 87% 64% /1) 70%, hsl(172 92% 36% /0.6) 50%);
-  }
-`;
+// *************************component section started *******************
 
 const Card = ({
-  name,
-  url,
-  image,
-  handleClick,
+  title,
   id,
   active,
-  i,
   FavoriteSongs,
   hanldeFavoriteSongs,
+  url,
+  ...restParams
 }) => {
-  const handleClick1 = async () => {
-    if (!FavoriteSongs.includes(id)) await createFavorite(id);
-    else await deleteFavorite(id);
+  //adding or removing fav from db
+  const handleFavorite = async () => {
+    await changeFavorite(id, FavoriteSongs.includes(id));
     await hanldeFavoriteSongs();
   };
   return (
@@ -56,43 +34,27 @@ const Card = ({
       alignItems={"center"}
     >
       <MediaContent
-        i={i + 1}
-        name={name}
-        image={image}
-        handleClick={handleClick}
+        title={title}
         id={id}
         active={active}
+        {...restParams}
         url={url}
       />
-      <Button
-        onClick={handleClick1}
-        className="btn"
-        variant="contained"
-        style={{
-          background: "transparent",
-          boxShadow: "none",
-          marginRight: "0px",
-          color: FavoriteSongs.includes(id) ? "hsl(325 100% 60%)" : "white",
-          backgroundColor: "transparent",
-        }}
-      >
-        <FavoriteIcon sx={{ fontSize: "24px" }} />
-      </Button>
+      <FavoriteBtn
+        handleFavorite={handleFavorite}
+        FavoriteSongs={FavoriteSongs}
+        id={id}
+      />
 
-      <Button
-        onClick={async () => await createDownloadLink({ url, title: name })}
-        className="btn"
-        variant="contained"
-        style={{
-          background: "transparent",
-          boxShadow: "none",
-          marginRight: "8px",
-        }}
-      >
-        <DownloadIcon sx={{ fontSize: "35px" }} />
-      </Button>
+      <DownloadBtn
+        createDownloadLink={createDownloadLink}
+        title={title}
+        url={url}
+      />
     </CardWrapper>
   );
 };
+
+// *************************component section ended *******************
 
 export default Card;

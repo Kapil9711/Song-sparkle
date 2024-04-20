@@ -1,4 +1,10 @@
+// ********************import section started ************
+
 import styled from "styled-components";
+
+// ********************import section ended ************
+
+// ********************Styling section started ************
 
 const ImageWrapper = styled.img`
   display: block;
@@ -13,6 +19,7 @@ const ImageWrapper = styled.img`
     height: 80px;
   }
 
+  /* animation for rotating the image */
   @keyframes rotate {
     0% {
       transform: rotate(0deg);
@@ -23,6 +30,10 @@ const ImageWrapper = styled.img`
   }
 `;
 
+// ********************Styling section ended ************
+
+// ********************component section started ************
+
 const ImageComponent = ({ active, image, id, isActive }) => {
   return (
     <ImageWrapper
@@ -32,5 +43,7 @@ const ImageComponent = ({ active, image, id, isActive }) => {
     />
   );
 };
+
+// ********************component section ended ************
 
 export default ImageComponent;

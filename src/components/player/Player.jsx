@@ -8,7 +8,6 @@ import {
 } from "react-icons/bs";
 import { skiptoNext, skipBack } from "../../assets/Utility/Utility.components";
 import ImageComponent from "../card/Image.component";
-import MediaSession from "@mebtte/react-media-session";
 
 const PlayerContainer = styled.div`
   border: solid hsl(334, 100%, 80%);
