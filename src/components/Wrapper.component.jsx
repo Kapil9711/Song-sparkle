@@ -187,7 +187,7 @@ class Wrapper extends Component {
           ) : (
             <Lottie className="lottie" options={defaultOptions} />
           )}
-          {filteredSongs.length && this.state.FavoriteSongs.length ? (
+          {filteredSongs.length ? (
             <PlayerComponent
               index={this.state.index}
               handleClick={this.handleClick}
