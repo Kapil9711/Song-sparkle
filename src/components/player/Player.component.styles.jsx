@@ -5,7 +5,7 @@ const CardWrapper = styled.div`
     position: fixed;
     z-index: 1000;
     width: 100%;
-    bottom: 38px;
+    bottom: 40px;
     left: auto;
     right: auto;
     background-color: hsl(334 100% 38% /1);

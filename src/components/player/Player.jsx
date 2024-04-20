@@ -10,7 +10,7 @@ import { skiptoNext, skipBack } from "../../assets/Utility/Utility.components";
 import ImageComponent from "../card/Image.component";
 
 const PlayerContainer = styled.div`
-  border: solid hsl(334, 100%, 80%);
+  border: 2px solid hsl(334, 100%, 80%);
   max-width: 776px;
   margin: 0 auto;
   color: rgb(218, 218, 218);
@@ -72,7 +72,7 @@ const PlayerContainer = styled.div`
     }
 
     & .btn_action {
-      font-size: 2rem;
+      font-size: 1.7rem;
       cursor: pointer;
 
       &:hover {
