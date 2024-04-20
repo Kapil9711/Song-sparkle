@@ -256,7 +256,7 @@ Error generating stack: `+ot.message+`
     }
   } */
 `,CardList=({Songs:s,FavoritePage:o,...a})=>jsxRuntimeExports.jsxs(ListWrapper,{children:[jsxRuntimeExports.jsx("h1",{className:"favorite-heading",style:{display:o?"initial":"none"},children:"Favorite Songs List From All Users"}),s.map(({id:et,...tt},ot)=>reactExports.createElement(Card,{i:ot,...tt,...a,key:et,id:et}))]});var DefaultContext={color:void 0,size:void 0,className:void 0,style:void 0,attr:void 0},IconContext=React.createContext&&React.createContext(DefaultContext),__assign=function(){return __assign=Object.assign||function(s){for(var o,a=1,et=arguments.length;a<et;a++){o=arguments[a];for(var tt in o)Object.prototype.hasOwnProperty.call(o,tt)&&(s[tt]=o[tt])}return s},__assign.apply(this,arguments)},__rest=function(s,o){var a={};for(var et in s)Object.prototype.hasOwnProperty.call(s,et)&&o.indexOf(et)<0&&(a[et]=s[et]);if(s!=null&&typeof Object.getOwnPropertySymbols=="function")for(var tt=0,et=Object.getOwnPropertySymbols(s);tt<et.length;tt++)o.indexOf(et[tt])<0&&Object.prototype.propertyIsEnumerable.call(s,et[tt])&&(a[et[tt]]=s[et[tt]]);return a};function Tree2Element(s){return s&&s.map(function(o,a){return React.createElement(o.tag,__assign({key:a},o.attr),Tree2Element(o.child))})}function GenIcon(s){return function(o){return React.createElement(IconBase,__assign({attr:__assign({},s.attr)},o),Tree2Element(s.child))}}function IconBase(s){var o=function(a){var et=s.attr,tt=s.size,ot=s.title,ft=__rest(s,["attr","size","title"]),pt=tt||a.size||"1em",dt;return a.className&&(dt=a.className),s.className&&(dt=(dt?dt+" ":"")+s.className),React.createElement("svg",__assign({stroke:"currentColor",fill:"currentColor",strokeWidth:"0"},a.attr,et,ft,{className:dt,style:__assign(__assign({color:s.color||a.color},a.style),s.style),height:pt,width:pt,xmlns:"http://www.w3.org/2000/svg"}),ot&&React.createElement("title",null,ot),s.children)};return IconContext!==void 0?React.createElement(IconContext.Consumer,null,function(a){return o(a)}):o(DefaultContext)}function BsFillPauseCircleFill(s){return GenIcon({tag:"svg",attr:{fill:"currentColor",viewBox:"0 0 16 16"},child:[{tag:"path",attr:{d:"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z"}}]})(s)}function BsFillPlayCircleFill(s){return GenIcon({tag:"svg",attr:{fill:"currentColor",viewBox:"0 0 16 16"},child:[{tag:"path",attr:{d:"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"}}]})(s)}function BsFillSkipEndCircleFill(s){return GenIcon({tag:"svg",attr:{fill:"currentColor",viewBox:"0 0 16 16"},child:[{tag:"path",attr:{d:"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407L9.5 8.972V10.5a.5.5 0 0 0 1 0v-5a.5.5 0 0 0-1 0v1.528L6.79 5.093z"}}]})(s)}function BsFillSkipStartCircleFill(s){return GenIcon({tag:"svg",attr:{fill:"currentColor",viewBox:"0 0 16 16"},child:[{tag:"path",attr:{d:"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM9.71 5.093 7 7.028V5.5a.5.5 0 0 0-1 0v5a.5.5 0 0 0 1 0V8.972l2.71 1.935a.5.5 0 0 0 .79-.407v-5a.5.5 0 0 0-.79-.407z"}}]})(s)}const PlayerContainer=ut.div`
-  border: solid hsl(334, 100%, 80%);
+  border: 2px solid hsl(334, 100%, 80%);
   max-width: 776px;
   margin: 0 auto;
   color: rgb(218, 218, 218);
@@ -318,7 +318,7 @@ Error generating stack: `+ot.message+`
     }
 
     & .btn_action {
-      font-size: 2rem;
+      font-size: 1.7rem;
       cursor: pointer;
 
       &:hover {
@@ -340,7 +340,7 @@ Error generating stack: `+ot.message+`
     position: fixed;
     z-index: 1000;
     width: 100%;
-    bottom: 38px;
+    bottom: 40px;
     left: auto;
     right: auto;
     background-color: hsl(334 100% 38% /1);
