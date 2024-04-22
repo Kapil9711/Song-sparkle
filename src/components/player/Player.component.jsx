@@ -4,10 +4,10 @@ import Player from "./Player";
 import { skiptoNext } from "../../assets/Utility/Utility.components";
 import CardWrapper from "./Player.component.styles";
 
-const PlayerComponent = ({ filteredSongs, active, handleClick, index }) => {
+const PlayerComponent = ({ filteredSongs, handleClick, active, index }) => {
   const audioElem = useRef();
   const [songs, setSongs] = useState(filteredSongs);
-  const [isplaying, setisplaying] = useState(active.length > 0);
+  const [isplaying, setisplaying] = useState(active.length ? true : false);
   const [currentSong, setCurrentSong] = useState(songs[index] || songs[0]);
   const [ended, setEnded] = useState(() => false);
 

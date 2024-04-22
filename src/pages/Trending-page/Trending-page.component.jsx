@@ -1,20 +1,21 @@
 import Wrapper from "../../components/Wrapper.component";
-import { useLocation } from "react-router-dom";
-import { getPaths } from "../../assets/Utility/Utility.components";
-
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 
 import NavigationIcon from "@mui/icons-material/Navigation";
 
-const TrendingPage = () => {
+const TrendingPage = ({
+  playlists,
+  handlePlayer,
+  parentindex,
+  parentActive,
+}) => {
   const [activePlaylist, setActivePlaylist] = React.useState("hindi");
   const handleClick = (e) => {
     setActivePlaylist(e.target.id);
   };
-  const { pathname } = useLocation();
-  const { currentPath } = getPaths(pathname);
+
   return (
     <>
       <Box
@@ -65,7 +66,14 @@ const TrendingPage = () => {
           Haryanvi
         </Fab>
       </Box>
-      <Wrapper activePlaylist={activePlaylist} currentPath={currentPath} />
+      <Wrapper
+        handlePlayer={handlePlayer}
+        activePlaylist={activePlaylist}
+        currentPath={"trendingPage"}
+        playlists={playlists}
+        parentindex={parentindex}
+        parentActive={parentActive}
+      />
     </>
   );
 };

@@ -19,11 +19,20 @@ const H1 = styled.h1`
 
 // ********************Component section started ************
 
-const MediaContent = ({ id, image, handleClick, active, title, i }) => {
+const MediaContent = ({
+  id,
+  image,
+  active,
+  title,
+  i,
+  handleIndexAndActive,
+}) => {
   return (
     <Stack
       id={id}
-      onClick={(e) => handleClick(e.currentTarget.id, image, i)}
+      onClick={(e) => {
+        handleIndexAndActive(e.currentTarget.id, i);
+      }}
       spacing={2}
       direction={"row"}
       alignItems={"center"}

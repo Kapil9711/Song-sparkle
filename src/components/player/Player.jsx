@@ -23,7 +23,7 @@ const PlayerContainer = styled.div`
   @media (min-width: 996px) {
     & {
       gap: 15px;
-      border: 1px solid hsl(334, 100%, 80%);
+      border: 3px solid hsl(334, 100%, 80%);
       flex-direction: row;
       justify-content: "center";
       padding: 0 5px;

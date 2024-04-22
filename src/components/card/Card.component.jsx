@@ -19,6 +19,8 @@ const Card = ({
   FavoriteSongs,
   hanldeFavoriteSongs,
   url,
+  handleIndexAndActive,
+
   ...restParams
 }) => {
   //adding or removing fav from db
@@ -39,6 +41,7 @@ const Card = ({
         active={active}
         {...restParams}
         url={url}
+        handleIndexAndActive={handleIndexAndActive}
       />
       <FavoriteBtn
         handleFavorite={handleFavorite}
