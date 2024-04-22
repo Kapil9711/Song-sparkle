@@ -25,7 +25,7 @@ const BackgroundImage = ({ Songs, index, parentActive }) => {
     hsl(0 0% 20% /0.7),
     hsl(0 0% 20% /0.7)
   ),
-  url(${image})`,
+  url(${image ? image : ""})`,
       }}
     ></ImageBox>
   );
