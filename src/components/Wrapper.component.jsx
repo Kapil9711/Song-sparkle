@@ -120,6 +120,7 @@ class Wrapper extends Component {
               FavoritePage={this.props.FavoritePage}
               parentindex={this.props.parentindex}
               parentActive={this.props.parentActive}
+              PlayingSongs={this.props.PlayingSongs}
             />
           ) : (
             <Lottie className="lottie" options={defaultOptions} />

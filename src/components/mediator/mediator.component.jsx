@@ -15,12 +15,13 @@ class Mediator extends React.Component {
   };
 
   render() {
-    const { Songs, parentindex, parentActive } = this.props;
+    const { Songs, PlayingSongs, parentindex, parentActive } = this.props;
     return (
       <>
-        {Songs.length ? (
+        {PlayingSongs.length || Songs.length ? (
           <BackgroundImage
             Songs={Songs}
+            PlayingSongs={PlayingSongs}
             index={parentindex}
             parentActive={parentActive}
           />

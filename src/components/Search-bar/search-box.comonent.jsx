@@ -37,8 +37,7 @@ const SearchBar = ({ handleChange }) => {
         label="Search (songs/singerName)"
         variant="filled"
         sx={{
-          background:
-            "linear-gradient(to right,hsl(0 70% 100% /1),hsl(0 70% 100% /.9))",
+          background: "white",
           width: "min(99%, 776px)",
         }}
       />

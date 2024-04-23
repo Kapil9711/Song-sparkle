@@ -40,7 +40,7 @@ const MediaContent = ({
     >
       <ImageComponent active={active} id={id} image={image} />
       <H1 className="h1" style={{ color: "hsl(334, 100%, 93%)" }}>
-        {i + 1} : {title.slice(0, 12)}
+        {i + 1} : {window.innerWidth > 776 ? title : title.slice(0, 12)}
       </H1>
     </Stack>
   );

@@ -12,8 +12,11 @@ const ImageBox = styled.div`
   z-index: -1;
 `;
 
-const BackgroundImage = ({ Songs, index, parentActive }) => {
-  const image = Songs[index].image;
+const BackgroundImage = ({ Songs, PlayingSongs, index, parentActive }) => {
+  let image;
+  if (Songs.length) image = Songs[index].image;
+  if (PlayingSongs.length) image = PlayingSongs[index].image;
+  if (!image) image = "";
 
   return (
     <ImageBox
@@ -21,11 +24,11 @@ const BackgroundImage = ({ Songs, index, parentActive }) => {
       style={{
         background: `linear-gradient(
     to right,
-    hsl(0 0% 20% /0.7),
-    hsl(0 0% 20% /0.7),
-    hsl(0 0% 20% /0.7)
+    hsl(0 0% 20% /0.65),
+    hsl(0 0% 20% /0.6),
+    hsl(0 0% 20% /0.65)
   ),
-  url(${image ? image : ""})`,
+  url(${image})`,
       }}
     ></ImageBox>
   );

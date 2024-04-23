@@ -80,14 +80,14 @@ const PlayerContainer = styled.div`
       }
       @media (min-width: 776px) {
         & {
-          font-size: 2.5rem;
+          font-size: 2.4rem;
         }
       }
     }
   }
 
   & .pp {
-    font-size: 3.3rem;
+    font-size: 3rem;
   }
 `;
 
@@ -149,7 +149,7 @@ const Player = ({
   return (
     <PlayerContainer
       style={{
-        background: `linear-gradient(hsl(0 0% 0% /0.8), hsl(0 0% 0% /0.8)),url(${currentSong.image})`,
+        background: `linear-gradient(hsl(0 0% 0% /0.6), hsl(0 0% 0% /0.6)),url(${currentSong.image})`,
       }}
       className="player_container"
     >

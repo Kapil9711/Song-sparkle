@@ -61,6 +61,7 @@ class App extends Component {
                   handlePlayer={this.handlePlayer}
                   parentindex={index}
                   parentActive={active}
+                  PlayingSongs={this.state.songs}
                 />
               }
             />
@@ -71,6 +72,7 @@ class App extends Component {
                   handlePlayer={this.handlePlayer}
                   parentindex={index}
                   parentActive={active}
+                  PlayingSongs={this.state.songs}
                 />
               }
             />
@@ -81,6 +83,7 @@ class App extends Component {
                   handlePlayer={this.handlePlayer}
                   parentindex={index}
                   parentActive={active}
+                  PlayingSongs={this.state.songs}
                 />
               }
             />

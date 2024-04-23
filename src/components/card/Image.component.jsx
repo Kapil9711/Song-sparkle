@@ -8,15 +8,15 @@ import styled from "styled-components";
 
 const ImageWrapper = styled.img`
   display: block;
-  width: 72px;
-  height: 72px;
+  width: 67px;
+  height: 67px;
   border-radius: 100%;
   &.active {
     animation: 10s linear infinite rotate forwards;
   }
   @media (min-width: 776px) {
-    width: 80px;
-    height: 80px;
+    width: 68px;
+    height: 68px;
   }
 
   /* animation for rotating the image */

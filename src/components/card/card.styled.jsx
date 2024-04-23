@@ -10,9 +10,9 @@ import styled from "styled-components";
 const CardWrapper = styled(Stack)`
   background: linear-gradient(
     to right,
-    hsl(0 0% 0% /0.65),
-    hsl(0 0% 5% /0.6),
-    hsl(0 0% 0% /0.65)
+    hsl(0 0% 0% /0.5),
+    hsl(0 0% 0% /0.5),
+    hsl(0 0% 0% /0.5)
   );
   border-radius: 50px;
   width: min(99%, 776px);
