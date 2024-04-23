@@ -2,10 +2,14 @@ import { Component } from "react";
 import Lottie from "react-lottie";
 import { urls, defaultOptions } from "./Data/data";
 import styled from "styled-components";
-import { fetchData, arrangeData } from "../assets/Utility/Utility.components";
+import {
+  fetchData,
+  arrangeData,
+  getFavArray,
+  getFavSongsArr,
+} from "../assets/Utility/Utility.components";
 import CardList from "./card-list/CardList.component";
 import SearchBar from "./Search-bar/search-box.comonent";
-import axios from "axios";
 
 const Div = styled.div`
   & .lottie {
@@ -17,12 +21,12 @@ const Div = styled.div`
     }
   }
 `;
+const MainWrapper = styled.div``;
 
 class Wrapper extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      globalSongs: {},
       currentSong: false,
       currentImage: "",
       searchString: "",
@@ -51,39 +55,18 @@ class Wrapper extends Component {
   };
 
   hanldeFavoriteSongs = async () => {
-    const favData = await axios.get(this.state.serverUrl + "/getFavorite");
-    const idArr = [];
-    for (let ele of favData.data) {
-      if (ele.songId) idArr.push(ele.songId);
-    }
-    this.setState({ FavoriteSongs: idArr });
-
+    const idArr = await getFavArray(this.state.serverUrl);
     if (this.props.FavoritePage) {
-      const url = `https://saavn.dev/api/songs/`;
-      let dataList = [];
-      for (let id of idArr) {
-        const data = await axios.get(url + id);
-        const songsData = await arrangeData({ results: data.data.data });
-        dataList = dataList.concat(songsData);
-      }
+      const dataList = await getFavSongsArr(idArr);
       this.setState({ favoriteSongs: dataList });
     }
+    this.setState({ FavoriteSongs: idArr });
   };
 
   async componentDidMount() {
-    const favData = await axios.get(this.state.serverUrl + "/getFavorite");
-    const idArr = [];
-    for (let ele of favData.data) {
-      if (ele.songId) idArr.push(ele.songId);
-    }
+    const idArr = await getFavArray(this.state.serverUrl);
     if (this.props.FavoritePage) {
-      const url = `https://saavn.dev/api/songs/`;
-      let dataList = [];
-      for (let id of idArr) {
-        const data = await axios.get(url + id);
-        const songsData = await arrangeData({ results: data.data.data });
-        dataList = dataList.concat(songsData);
-      }
+      const dataList = await getFavSongsArr(idArr);
       this.setState({ favoriteSongs: dataList });
     }
     this.setState({ FavoriteSongs: idArr });
@@ -92,16 +75,12 @@ class Wrapper extends Component {
   render() {
     const globalSongs = this.props.playlists;
     let filteredSongs = [];
-    if (this.props.currentPath === "trendingPage") {
+    if (this.props.currentPath === "trendingPage")
       filteredSongs = globalSongs[this.props.activePlaylist];
-    }
-    if (this.props.FavoritePage) {
-      filteredSongs = this.state.favoriteSongs;
-    }
 
+    if (this.props.FavoritePage) filteredSongs = this.state.favoriteSongs;
     if (this.state.searchString.length) filteredSongs = this.state.liveSongs;
     if (!filteredSongs) filteredSongs = [];
-    const MainWrapper = styled.div``;
 
     return (
       <Div>
@@ -110,17 +89,15 @@ class Wrapper extends Component {
           {filteredSongs.length || this.props.searchPage ? (
             <CardList
               handlePlayer={this.props.handlePlayer}
-              FavoriteSongs={this.state.FavoriteSongs}
-              page={this.state.page}
-              handleMore={this.handleMore}
               handleClick={this.handleClick}
+              hanldeFavoriteSongs={this.hanldeFavoriteSongs}
+              FavoriteSongs={this.state.FavoriteSongs}
               Songs={filteredSongs}
               liveSongs={this.state.liveSongs}
-              hanldeFavoriteSongs={this.hanldeFavoriteSongs}
+              PlayingSongs={this.props.PlayingSongs}
               FavoritePage={this.props.FavoritePage}
               parentindex={this.props.parentindex}
               parentActive={this.props.parentActive}
-              PlayingSongs={this.props.PlayingSongs}
             />
           ) : (
             <Lottie className="lottie" options={defaultOptions} />

@@ -105,6 +105,27 @@ const changeFavorite = async (id, isAlreadyExist) => {
   });
 };
 
+// creating fav array
+const getFavArray = async (serverUrl) => {
+  const favData = await axios.get(serverUrl + "/getFavorite");
+  const idArr = [];
+  for (let ele of favData.data) {
+    if (ele.songId) idArr.push(ele.songId);
+  }
+  return idArr;
+};
+
+const getFavSongsArr = async (idArr) => {
+  const url = `https://saavn.dev/api/songs/`;
+  let dataList = [];
+  for (let id of idArr) {
+    const data = await axios.get(url + id);
+    const songsData = await arrangeData({ results: data.data.data });
+    dataList = dataList.concat(songsData);
+  }
+  return dataList;
+};
+
 export {
   fetchData,
   arrangeData,
@@ -113,4 +134,6 @@ export {
   skipBack,
   getPaths,
   changeFavorite,
+  getFavArray,
+  getFavSongsArr,
 };
