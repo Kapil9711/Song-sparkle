@@ -6,6 +6,7 @@ import FavoritePage from "./pages/Favorite-page/Favorite-page.component";
 import SearchPage from "./pages/Search-page/Search-page.component";
 import { fetchData, arrangeData } from "./assets/Utility/Utility.components";
 import PlayerComponent from "./components/player/Player.component";
+import SignInSignUp from "./pages/sign-in-sign-up-page/sign-in-sign-up-page.component";
 
 class App extends Component {
   constructor() {
@@ -87,6 +88,7 @@ class App extends Component {
                 />
               }
             />
+            <Route path="sign" element={<SignInSignUp />} />
           </Route>
         </Routes>
         {this.state.songs.length && songs[0].id ? (

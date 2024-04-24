@@ -7,7 +7,7 @@ const SearchWrapper = styled.div`
   display: flex;
   justify-content: center;
   position: fixed;
-  top: 1px;
+  top: 0px;
   margin: 0 auto;
   z-index: 10000;
 `;

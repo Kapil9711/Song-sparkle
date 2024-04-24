@@ -16,15 +16,13 @@ class Mediator extends React.Component {
 
   render() {
     const { Songs, PlayingSongs, parentindex, parentActive } = this.props;
+    let image;
+    image = Songs[parentindex]?.image;
+    if (PlayingSongs.length) image = PlayingSongs[parentindex]?.image;
     return (
       <>
-        {PlayingSongs.length || Songs.length ? (
-          <BackgroundImage
-            Songs={Songs}
-            PlayingSongs={PlayingSongs}
-            index={parentindex}
-            parentActive={parentActive}
-          />
+        {image ? (
+          <BackgroundImage image={image} parentActive={parentActive} />
         ) : (
           ""
         )}

@@ -24,7 +24,12 @@ const CardWrapper = styled(Stack)`
 
   &.gradient {
     border: 1px solid
-      color-mix(in srgb, hsl(10 87% 64% /1) 70%, hsl(172 92% 36% /0.6) 50%);
+      color-mix(in srgb, hsl(10 87% 64% /1) 70%, hsl(172 92% 36% /1) 50%);
+    @media (min-width: 776px) {
+      outline: 2px solid hsl(10 87% 64% /1);
+      border: none;
+      outline-offset: 3px;
+    }
   }
 `;
 

@@ -17,8 +17,9 @@ export default function LabelBottomNavigation() {
     setValue(newValue);
     const { basePath } = getPaths(pathname);
     if (newValue === "Trending") navigate(basePath);
-    else if (newValue === "Favorites")
-      navigate(basePath + newValue.toLowerCase());
+    // else if (newValue === "Favorites")
+    //   navigate(basePath + newValue.toLowerCase());
+    // else if(newValue === 'sign') navigate(basePath + newValue.toLowerCase())
     else navigate(basePath + newValue.toLowerCase());
   };
 
@@ -48,6 +49,12 @@ export default function LabelBottomNavigation() {
           sx={{ color: "white" }}
           label="Search"
           value="Search"
+          icon={<SearchIcon />}
+        />
+        <BottomNavigationAction
+          sx={{ color: "white" }}
+          label="Sign"
+          value="Sign"
           icon={<SearchIcon />}
         />
       </BottomNavigationWrapper>

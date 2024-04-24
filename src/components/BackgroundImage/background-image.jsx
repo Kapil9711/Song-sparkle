@@ -12,12 +12,7 @@ const ImageBox = styled.div`
   z-index: -1;
 `;
 
-const BackgroundImage = ({ Songs, PlayingSongs, index, parentActive }) => {
-  let image;
-  if (Songs.length) image = Songs[index].image;
-  if (PlayingSongs.length) image = PlayingSongs[index].image;
-  if (!image) image = "";
-
+const BackgroundImage = ({ image, parentActive }) => {
   return (
     <ImageBox
       className={parentActive ? " gradient-light" : ""}
