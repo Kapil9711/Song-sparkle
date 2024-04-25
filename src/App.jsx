@@ -1,6 +1,6 @@
 import { Component } from "react";
 import LabelBottomNavigation from "./components/navigation-bar/Navigation-Bar.component";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Outlet } from "react-router-dom";
 import TrendingPage from "./pages/Trending-page/Trending-page.component";
 import FavoritePage from "./pages/Favorite-page/Favorite-page.component";
 import SearchPage from "./pages/Search-page/Search-page.component";
@@ -51,10 +51,19 @@ class App extends Component {
     const { index, active, songs } = this.state;
     return (
       <>
-        <LabelBottomNavigation />
         <Routes>
           <Route path="/Song-sparkle/" element={<SignInSignUp />} />
-          <Route path="/Song-sparkle-login/">
+
+          {/* <Route></Route> */}
+          <Route
+            path="/Song-sparkle-login/"
+            element={
+              <>
+                <LabelBottomNavigation />
+                <Outlet />
+              </>
+            }
+          >
             <Route
               index
               element={
