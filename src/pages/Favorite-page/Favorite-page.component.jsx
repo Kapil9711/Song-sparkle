@@ -1,6 +1,12 @@
 import Wrapper from "../../components/Wrapper.component";
 
-const FavoritePage = ({ handlePlayer, parentindex, parentActive,PlayingSongs}) => {
+const FavoritePage = ({
+  handlePlayer,
+  parentindex,
+  parentActive,
+  PlayingSongs,
+  favoriteSongsId,
+}) => {
   return (
     <Wrapper
       handlePlayer={handlePlayer}
@@ -8,6 +14,7 @@ const FavoritePage = ({ handlePlayer, parentindex, parentActive,PlayingSongs}) =
       parentActive={parentActive}
       FavoritePage={true}
       PlayingSongs={PlayingSongs}
+      favoriteSongsId={favoriteSongsId}
     />
   );
 };

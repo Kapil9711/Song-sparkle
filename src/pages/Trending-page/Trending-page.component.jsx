@@ -11,6 +11,7 @@ const TrendingPage = ({
   parentindex,
   parentActive,
   PlayingSongs,
+  favoriteSongsId,
 }) => {
   const [activePlaylist, setActivePlaylist] = React.useState("hindi");
   const handleClick = (e) => {
@@ -75,6 +76,7 @@ const TrendingPage = ({
         parentindex={parentindex}
         parentActive={parentActive}
         PlayingSongs={PlayingSongs}
+        favoriteSongsId={favoriteSongsId}
       />
     </>
   );

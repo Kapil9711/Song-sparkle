@@ -64,7 +64,9 @@ class Wrapper extends Component {
   };
 
   async componentDidMount() {
-    const idArr = await getFavArray(this.state.serverUrl);
+    let idArr = this.props.favoriteSongsId;
+    if (!this.props.favoriteSongsId.length)
+      idArr = await getFavArray(this.state.serverUrl);
     if (this.props.FavoritePage) {
       const dataList = await getFavSongsArr(idArr);
       this.setState({ favoriteSongs: dataList });

@@ -8,6 +8,7 @@ import { fetchData, arrangeData } from "./assets/Utility/Utility.components";
 import PlayerComponent from "./components/player/Player.component";
 import SignInPage from "./pages/sign-in-page/sign-in-page.component";
 import SignUpPage from "./pages/sign-up-page/sign-up-page.component";
+import { getFavArray } from "./assets/Utility/Utility.components";
 
 class App extends Component {
   constructor() {
@@ -23,6 +24,8 @@ class App extends Component {
       handleIndexAndActive: "",
       songs: [],
       active: "",
+      serverUrl: "https://songsserver.onrender.com/api/song-sparkle",
+      favoriteSongsId: [],
     };
   }
   handlePlayer = (index, songs, active) => {
@@ -46,6 +49,8 @@ class App extends Component {
       allPlaylists[ids] = songsData;
       this.setState({ playlists: allPlaylists });
     }
+    const idArr = await getFavArray(this.state.serverUrl);
+    this.setState({ favoriteSongsId: idArr });
   }
 
   render() {
@@ -86,6 +91,7 @@ class App extends Component {
                   parentindex={index}
                   parentActive={active}
                   PlayingSongs={this.state.songs}
+                  favoriteSongsId={this.state.favoriteSongsId}
                 />
               }
             />
@@ -97,6 +103,7 @@ class App extends Component {
                   parentindex={index}
                   parentActive={active}
                   PlayingSongs={this.state.songs}
+                  favoriteSongsId={this.state.favoriteSongsId}
                 />
               }
             />
@@ -108,6 +115,7 @@ class App extends Component {
                   parentindex={index}
                   parentActive={active}
                   PlayingSongs={this.state.songs}
+                  favoriteSongsId={this.state.favoriteSongsId}
                 />
               }
             />

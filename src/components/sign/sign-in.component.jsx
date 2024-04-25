@@ -1,7 +1,7 @@
 import React from "react";
 import { FormWrapper, Input } from "./sign-up.component.styles";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 class SignIn extends React.Component {
   constructor() {
@@ -73,6 +73,9 @@ class SignIn extends React.Component {
           <label htmlFor="password">password</label>
         </Input>
         <button type="submit">Sign-In</button>
+        <p style={{ fontSize: "1.3rem", color: "white" }}>
+          Do not have a account ,<Link to={"/Song-sparkle/"}> Sign Up.</Link>
+        </p>
         <p
           style={
             this.state.clicked === true
