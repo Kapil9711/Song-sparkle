@@ -2,7 +2,7 @@ import React from "react";
 import { FormWrapper, Input } from "./sign-up.component.styles";
 import { loginValidator } from "../../assets/Utility/Utility.components";
 import axios from "axios";
-import { Link, redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
 class SignUp extends React.Component {
