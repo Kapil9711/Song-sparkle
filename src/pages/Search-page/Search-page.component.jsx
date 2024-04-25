@@ -6,6 +6,7 @@ const SearchPage = ({
   parentActive,
   PlayingSongs,
   favoriteSongsId,
+  currentUser,
 }) => {
   return (
     <Wrapper
@@ -15,6 +16,7 @@ const SearchPage = ({
       searchPage={true}
       PlayingSongs={PlayingSongs}
       favoriteSongsId={favoriteSongsId}
+      currentUser={currentUser}
     />
   );
 };

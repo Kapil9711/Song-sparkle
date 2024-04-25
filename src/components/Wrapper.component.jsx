@@ -34,6 +34,7 @@ class Wrapper extends Component {
       serverUrl: "https://songsserver.onrender.com/api/song-sparkle",
       FavoriteSongs: [],
       favoriteSongs: [],
+      usernames: [],
     };
     this.props = props;
   }
@@ -55,24 +56,27 @@ class Wrapper extends Component {
   };
 
   hanldeFavoriteSongs = async () => {
-    const idArr = await getFavArray(this.state.serverUrl);
+    let { idArr, usernameArr } = await getFavArray(this.state.serverUrl);
+
     if (this.props.FavoritePage) {
       const dataList = await getFavSongsArr(idArr);
       this.setState({ favoriteSongs: dataList });
     }
     this.setState({ FavoriteSongs: idArr });
+    this.setState({ usernames: usernameArr });
   };
 
   async componentDidMount() {
-    let idArr = this.props.favoriteSongsId;
-    if (this.props.FavoritePage)
-      idArr = await getFavArray(this.state.serverUrl);
+    // let idArr = this.props.favoriteSongsId;
+    // if (this.props.FavoritePage)
+    let { idArr, usernameArr } = await getFavArray(this.state.serverUrl);
 
     if (this.props.FavoritePage) {
       const dataList = await getFavSongsArr(idArr);
       this.setState({ favoriteSongs: dataList });
     }
     this.setState({ FavoriteSongs: idArr });
+    this.setState({ usernames: usernameArr });
   }
 
   render() {
@@ -101,6 +105,8 @@ class Wrapper extends Component {
               FavoritePage={this.props.FavoritePage}
               parentindex={this.props.parentindex}
               parentActive={this.props.parentActive}
+              currentUser={this.props.currentUser}
+              usernames={this.state.usernames}
             />
           ) : (
             <Lottie className="lottie" options={defaultOptions} />

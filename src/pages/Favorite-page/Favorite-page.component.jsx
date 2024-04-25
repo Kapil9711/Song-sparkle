@@ -6,6 +6,7 @@ const FavoritePage = ({
   parentActive,
   PlayingSongs,
   favoriteSongsId,
+  currentUser,
 }) => {
   return (
     <Wrapper
@@ -15,6 +16,7 @@ const FavoritePage = ({
       FavoritePage={true}
       PlayingSongs={PlayingSongs}
       favoriteSongsId={favoriteSongsId}
+      currentUser={currentUser}
     />
   );
 };

@@ -20,14 +20,18 @@ const Card = ({
   hanldeFavoriteSongs,
   url,
   handleIndexAndActive,
+  currentUser,
+  usernames,
 
   ...restParams
 }) => {
   //adding or removing fav from db
   const handleFavorite = async () => {
-    await changeFavorite(id, FavoriteSongs.includes(id));
+    await changeFavorite(id, FavoriteSongs.includes(id), currentUser);
     await hanldeFavoriteSongs();
   };
+  console.log(usernames);
+
   return (
     <CardWrapper
       className={active === id ? "gradient" : ""}
@@ -36,6 +40,7 @@ const Card = ({
       alignItems={"center"}
     >
       <MediaContent
+        usernames={usernames}
         title={title}
         id={id}
         active={active}
@@ -43,6 +48,9 @@ const Card = ({
         url={url}
         handleIndexAndActive={handleIndexAndActive}
       />
+      <p style={{ color: "white", fontSize: "8px", marginRight: "-14px" }}>
+        {usernames.length ? usernames[FavoriteSongs.indexOf(id)] : ""}
+      </p>
       <FavoriteBtn
         handleFavorite={handleFavorite}
         FavoriteSongs={FavoriteSongs}

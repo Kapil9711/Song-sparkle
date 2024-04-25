@@ -89,7 +89,7 @@ const getPaths = (path) => {
   return { basePath, currentPath };
 };
 
-const changeFavorite = async (id, isAlreadyExist) => {
+const changeFavorite = async (id, isAlreadyExist, currentUser) => {
   let url = "https://songsserver.onrender.com/api/song-sparkle";
   if (isAlreadyExist) url += "/deleteFavorite";
   else url += "/createFavorite";
@@ -101,6 +101,7 @@ const changeFavorite = async (id, isAlreadyExist) => {
     },
     data: {
       songId: id,
+      username: currentUser,
     },
   });
 };
@@ -109,10 +110,12 @@ const changeFavorite = async (id, isAlreadyExist) => {
 const getFavArray = async (serverUrl) => {
   const favData = await axios.get(serverUrl + "/getFavorite");
   const idArr = [];
+  const usernameArr = [];
   for (let ele of favData.data) {
     if (ele.songId) idArr.push(ele.songId);
+    if (ele.username) usernameArr.push(ele.username);
   }
-  return idArr;
+  return { idArr, usernameArr };
 };
 
 const getFavSongsArr = async (idArr) => {

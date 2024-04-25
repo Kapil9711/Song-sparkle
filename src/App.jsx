@@ -26,6 +26,7 @@ class App extends Component {
       active: "",
       serverUrl: "https://songsserver.onrender.com/api/song-sparkle",
       favoriteSongsId: [],
+      currentUser: "",
     };
   }
   handlePlayer = (index, songs, active) => {
@@ -38,6 +39,11 @@ class App extends Component {
     this.setState({ index });
     this.setState({ active });
   };
+  handleUser = (user) => {
+    this.setState({
+      currentUser: user.data.user.username.trim().split(" ")[0],
+    });
+  };
 
   async componentDidMount() {
     let allPlaylists = [];
@@ -49,7 +55,7 @@ class App extends Component {
       allPlaylists[ids] = songsData;
       this.setState({ playlists: allPlaylists });
     }
-    const idArr = await getFavArray(this.state.serverUrl);
+    const { idArr } = await getFavArray(this.state.serverUrl);
     this.setState({ favoriteSongsId: idArr });
   }
 
@@ -58,7 +64,10 @@ class App extends Component {
     return (
       <>
         <Routes>
-          <Route path="/Song-sparkle/" element={<SignInPage />} />
+          <Route
+            path="/Song-sparkle/"
+            element={<SignInPage handleUser={this.handleUser} />}
+          />
 
           <Route path="/Song-sparkle/sign-up" element={<SignUpPage />} />
 
@@ -93,6 +102,7 @@ class App extends Component {
                   parentActive={active}
                   PlayingSongs={this.state.songs}
                   favoriteSongsId={this.state.favoriteSongsId}
+                  currentUser={this.state.currentUser}
                 />
               }
             />
@@ -105,6 +115,7 @@ class App extends Component {
                   parentActive={active}
                   PlayingSongs={this.state.songs}
                   favoriteSongsId={this.state.favoriteSongsId}
+                  currentUser={this.state.currentUser}
                 />
               }
             />
@@ -117,6 +128,7 @@ class App extends Component {
                   parentActive={active}
                   PlayingSongs={this.state.songs}
                   favoriteSongsId={this.state.favoriteSongsId}
+                  currentUser={this.state.currentUser}
                 />
               }
             />

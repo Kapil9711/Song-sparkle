@@ -4,8 +4,8 @@ import axios from "axios";
 import { Navigate, Link } from "react-router-dom";
 
 class SignIn extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       username: "",
       password: "",
@@ -13,6 +13,7 @@ class SignIn extends React.Component {
       redirect: false,
       clicked: false,
     };
+    this.props = props;
   }
   handleSubmit = async (e) => {
     this.setState({ clicked: true });
@@ -36,6 +37,7 @@ class SignIn extends React.Component {
     if (user.status === 200) {
       this.setState({ signin: true });
       this.setState({ username: "", password: "" });
+      this.props.handleUser(user);
     } else this.setState({ signin: false });
 
     if (user.status === 200) this.setState({ redirect: true });
