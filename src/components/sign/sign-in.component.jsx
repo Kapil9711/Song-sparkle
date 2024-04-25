@@ -74,7 +74,8 @@ class SignIn extends React.Component {
         </Input>
         <button type="submit">Sign-In</button>
         <p style={{ fontSize: "1.3rem", color: "white" }}>
-          Do not have a account ,<Link to={"/Song-sparkle/"}> Sign Up.</Link>
+          Do not have a account ,
+          <Link to={"/Song-sparkle/sign-up"}> Sign Up.</Link>
         </p>
         <p
           style={

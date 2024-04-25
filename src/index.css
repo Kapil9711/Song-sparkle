@@ -36,7 +36,8 @@ body{
 
 a{
   text-decoration:underline;
-  color:white;
+  color: rgb(164, 113, 212),
+  ;
 }
 
 .gradient-light:after {

@@ -112,8 +112,7 @@ class SignUp extends React.Component {
           Please Wait ...
         </p>
         <p style={{ fontSize: "1.3rem", color: "white" }}>
-          Already have an account ,
-          <Link to={"/Song-sparkle/sign-in"}> Log In.</Link>
+          Already have an account ,<Link to={"/Song-sparkle/"}> Log In.</Link>
         </p>
         <p
           style={
@@ -161,7 +160,7 @@ class SignUp extends React.Component {
           Already signed Up, try to login
         </p>
         {this.state.redirect ? (
-          <Navigate to={"/Song-sparkle/sign-in"} replace={true} />
+          <Navigate to={"/Song-sparkle/"} replace={true} />
         ) : (
           ""
         )}

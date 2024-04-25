@@ -6,7 +6,7 @@ const FormWrapper = styled.form`
   align-items: center;
   background-color: hsl(346, 78%, 50%);
   padding: 30px 20px;
-  width: min(90%, 440px);
+  width: min(95%, 440px);
   margin: 0 auto;
   gap: 40px;
   border: solid white;

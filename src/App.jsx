@@ -58,8 +58,9 @@ class App extends Component {
     return (
       <>
         <Routes>
-          <Route path="/Song-sparkle/" element={<SignUpPage />} />
-          <Route path="/Song-sparkle/sign-in" element={<SignInPage />} />
+          <Route path="/Song-sparkle/" element={<SignInPage />} />
+
+          <Route path="/Song-sparkle/sign-up" element={<SignUpPage />} />
 
           {/* <Route></Route> */}
           <Route
