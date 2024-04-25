@@ -1,7 +1,7 @@
 import React from "react";
 import { FormWrapper, Input } from "./sign-up.component.styles";
 import axios from "axios";
-import { Navigate, redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 class SignIn extends React.Component {
   constructor() {
@@ -11,9 +11,12 @@ class SignIn extends React.Component {
       password: "",
       signin: null,
       redirect: false,
+      clicked: false,
     };
   }
   handleSubmit = async (e) => {
+    this.setState({ clicked: true });
+    this.setState({ signin: null });
     e.preventDefault();
     const { username, password } = this.state;
     const url = "https://songsserver.onrender.com/api/song-sparkle/getUser";
@@ -28,6 +31,8 @@ class SignIn extends React.Component {
         password,
       },
     });
+    this.setState({ clicked: false });
+
     if (user.status === 200) {
       this.setState({ signin: true });
       this.setState({ username: "", password: "" });
@@ -43,7 +48,7 @@ class SignIn extends React.Component {
   render() {
     return (
       <FormWrapper autoComplete="off" onSubmit={this.handleSubmit}>
-        <h1>Sign-in Form</h1>
+        <h1>Sign-In </h1>
         <Input className="form-control">
           <input
             required
@@ -70,6 +75,21 @@ class SignIn extends React.Component {
         <button type="submit">Sign-In</button>
         <p
           style={
+            this.state.clicked === true
+              ? {
+                  display: "initial",
+                  color: "green",
+                  background: "black",
+                  fontSize: "1.2rem",
+                  padding: "4px 16px",
+                }
+              : { display: "none" }
+          }
+        >
+          Please Wait ...
+        </p>
+        <p
+          style={
             this.state.signin === true
               ? {
                   display: "initial",
@@ -81,7 +101,7 @@ class SignIn extends React.Component {
               : { display: "none" }
           }
         >
-          login succesful
+          Login Succesful
         </p>
         <p
           style={
@@ -96,7 +116,7 @@ class SignIn extends React.Component {
               : { display: "none" }
           }
         >
-          user not found, try to sign up
+          User not found, Try to sign-up
         </p>
         {this.state.redirect ? (
           <Navigate to={"/Song-sparkle-login/"} replace={true} />

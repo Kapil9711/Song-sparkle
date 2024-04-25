@@ -34,6 +34,11 @@ body{
   background-size: 300% 300%;
 }
 
+a{
+  text-decoration:underline;
+  color:white;
+}
+
 .gradient-light:after {
   content: "";
   position: absolute;

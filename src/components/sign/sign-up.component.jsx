@@ -2,6 +2,8 @@ import React from "react";
 import { FormWrapper, Input } from "./sign-up.component.styles";
 import { loginValidator } from "../../assets/Utility/Utility.components";
 import axios from "axios";
+import { Link, redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 class SignUp extends React.Component {
   constructor() {
@@ -12,12 +14,16 @@ class SignUp extends React.Component {
       email: "",
       error: false,
       signup: null,
+      clicked: false,
+      redirect: false,
     };
   }
   handleSubmit = async (e) => {
+    this.setState({ error: false });
+    this.setState({ clicked: true });
+    this.setState({ signup: null });
     e.preventDefault();
     const checkValid = loginValidator(this.state.password);
-    console.log(checkValid);
     if (!checkValid.password) {
       this.setState({ error: true });
       return;
@@ -37,9 +43,12 @@ class SignUp extends React.Component {
         password,
       },
     });
+    this.setState({ clicked: false });
+
     if (user.status === 201) this.setState({ signup: true });
     else this.setState({ signup: false });
     this.setState({ username: "", password: "" });
+    setTimeout(() => this.setState({ redirect: true }), 2000);
   };
   handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,7 +58,7 @@ class SignUp extends React.Component {
   render() {
     return (
       <FormWrapper onSubmit={this.handleSubmit} autoComplete="off">
-        <h1>Sign-up Form</h1>
+        <h1>Sign-Up</h1>
 
         <Input className="form-control">
           <input
@@ -87,6 +96,25 @@ class SignUp extends React.Component {
         </Input>
 
         <button type="submit">Sign-Up</button>
+        <p
+          style={
+            this.state.clicked === true
+              ? {
+                  display: "initial",
+                  color: "green",
+                  background: "black",
+                  fontSize: "1.2rem",
+                  padding: "4px 16px",
+                }
+              : { display: "none" }
+          }
+        >
+          Please Wait ...
+        </p>
+        <p style={{ fontSize: "1.3rem", color: "white" }}>
+          Already have an account ,
+          <Link to={"/Song-sparkle/sign-in"}> Log In.</Link>
+        </p>
         <p
           style={
             this.state.error
@@ -132,6 +160,11 @@ class SignUp extends React.Component {
         >
           Already signed Up, try to login
         </p>
+        {this.state.redirect ? (
+          <Navigate to={"/Song-sparkle/sign-in"} replace={true} />
+        ) : (
+          ""
+        )}
       </FormWrapper>
     );
   }

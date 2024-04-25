@@ -6,7 +6,8 @@ import FavoritePage from "./pages/Favorite-page/Favorite-page.component";
 import SearchPage from "./pages/Search-page/Search-page.component";
 import { fetchData, arrangeData } from "./assets/Utility/Utility.components";
 import PlayerComponent from "./components/player/Player.component";
-import SignInSignUp from "./pages/sign-in-sign-up-page/sign-in-sign-up-page.component";
+import SignInPage from "./pages/sign-in-page/sign-in-page.component";
+import SignUpPage from "./pages/sign-up-page/sign-up-page.component";
 
 class App extends Component {
   constructor() {
@@ -52,7 +53,8 @@ class App extends Component {
     return (
       <>
         <Routes>
-          <Route path="/Song-sparkle/" element={<SignInSignUp />} />
+          <Route path="/Song-sparkle/" element={<SignUpPage />} />
+          <Route path="/Song-sparkle/sign-in" element={<SignInPage />} />
 
           {/* <Route></Route> */}
           <Route
@@ -60,6 +62,17 @@ class App extends Component {
             element={
               <>
                 <LabelBottomNavigation />
+                {this.state.songs.length && songs[0].id ? (
+                  <PlayerComponent
+                    key={index + songs[0].id}
+                    index={index}
+                    handleClick={this.handleClick}
+                    filteredSongs={songs}
+                    active={active}
+                  />
+                ) : (
+                  ""
+                )}
                 <Outlet />
               </>
             }
@@ -100,7 +113,7 @@ class App extends Component {
             />
           </Route>
         </Routes>
-        {this.state.songs.length && songs[0].id ? (
+        {/* {this.state.songs.length && songs[0].id ? (
           <PlayerComponent
             key={index + songs[0].id}
             index={index}
@@ -110,7 +123,7 @@ class App extends Component {
           />
         ) : (
           ""
-        )}
+        )} */}
       </>
     );
   }
