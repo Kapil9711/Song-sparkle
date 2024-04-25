@@ -126,6 +126,13 @@ const getFavSongsArr = async (idArr) => {
   return dataList;
 };
 
+const loginValidator = (password, email) => {
+  const validation = {};
+  if (email) validation.email = email.includes("a") && email.includes(".com");
+  if (password) validation.password = password.length >= 8;
+  return validation;
+};
+
 export {
   fetchData,
   arrangeData,
@@ -136,4 +143,5 @@ export {
   changeFavorite,
   getFavArray,
   getFavSongsArr,
+  loginValidator,
 };

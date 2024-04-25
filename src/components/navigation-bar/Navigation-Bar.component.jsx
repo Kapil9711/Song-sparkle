@@ -51,12 +51,6 @@ export default function LabelBottomNavigation() {
           value="Search"
           icon={<SearchIcon />}
         />
-        <BottomNavigationAction
-          sx={{ color: "white" }}
-          label="Sign"
-          value="Sign"
-          icon={<SearchIcon />}
-        />
       </BottomNavigationWrapper>
     </Stack>
   );

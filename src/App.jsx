@@ -53,7 +53,8 @@ class App extends Component {
       <>
         <LabelBottomNavigation />
         <Routes>
-          <Route path="/Song-sparkle/">
+          <Route path="/Song-sparkle/" element={<SignInSignUp />} />
+          <Route path="/Song-sparkle-login/">
             <Route
               index
               element={
@@ -88,7 +89,6 @@ class App extends Component {
                 />
               }
             />
-            <Route path="sign" element={<SignInSignUp />} />
           </Route>
         </Routes>
         {this.state.songs.length && songs[0].id ? (
