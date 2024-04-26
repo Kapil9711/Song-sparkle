@@ -16,11 +16,13 @@ class SignIn extends React.Component {
     this.props = props;
   }
   handleSubmit = async (e) => {
+    axios.defaults.withCredentials = true;
     this.setState({ clicked: true });
     this.setState({ signin: null });
     e.preventDefault();
     const { username, password } = this.state;
-    const url = "https://songsserver.onrender.com/api/song-sparkle/getUser";
+    const url = "https://songs-server-nine.vercel.app/api/song-sparkle/getUser";
+
     const user = await axios({
       method: "POST",
       url,

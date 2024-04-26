@@ -19,6 +19,8 @@ class SignUp extends React.Component {
     };
   }
   handleSubmit = async (e) => {
+    axios.defaults.withCredentials = true;
+
     this.setState({ error: false });
     this.setState({ clicked: true });
     this.setState({ signup: null });
@@ -29,7 +31,8 @@ class SignUp extends React.Component {
       return;
     }
     this.setState({ error: false });
-    const url = "https://songsserver.onrender.com/api/song-sparkle/createUser";
+    const url =
+      "https://songs-server-nine.vercel.app/api/song-sparkle/createUser";
     const { email, username, password } = this.state;
     const user = await axios({
       method: "POST",
