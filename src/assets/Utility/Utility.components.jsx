@@ -90,7 +90,7 @@ const getPaths = (path) => {
 };
 
 const changeFavorite = async (id, isAlreadyExist, currentUser) => {
-  let url = "https://songsserver.onrender.com/api/song-sparkle";
+  let url = "https://songs-server-nine.vercel.app/api/song-sparkle";
   if (isAlreadyExist) url += "/deleteFavorite";
   else url += "/createFavorite";
   return await axios({

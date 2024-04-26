@@ -24,7 +24,7 @@ class App extends Component {
       handleIndexAndActive: "",
       songs: [],
       active: "",
-      serverUrl: "https://songsserver.onrender.com/api/song-sparkle",
+      serverUrl: "https://songs-server-nine.vercel.app/api/song-sparkle",
       favoriteSongsId: [],
       currentUser: "",
       isUserExist: false,

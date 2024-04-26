@@ -16,7 +16,7 @@ class SignIn extends React.Component {
     this.props = props;
   }
   handleSubmit = async (e) => {
-    axios.defaults.withCredentials = true;
+    // axios.defaults.withCredentials = true;
     this.setState({ clicked: true });
     this.setState({ signin: null });
     e.preventDefault();

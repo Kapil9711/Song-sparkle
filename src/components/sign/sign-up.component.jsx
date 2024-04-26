@@ -19,7 +19,7 @@ class SignUp extends React.Component {
     };
   }
   handleSubmit = async (e) => {
-    axios.defaults.withCredentials = true;
+    // axios.defaults.withCredentials = true;
 
     this.setState({ error: false });
     this.setState({ clicked: true });
