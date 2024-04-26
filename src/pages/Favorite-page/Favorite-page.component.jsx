@@ -18,7 +18,7 @@ const FavoritePage = ({
 }) => {
   const [age, setAge] = React.useState("");
   const [usernames, setusernames] = React.useState([]);
-  const [selectedUser, setSelectedUser] = React.useState(currentUser);
+  const [selectedUser, setSelectedUser] = React.useState("");
   const handleUsername = (users) => {
     let set = new Set(users);
     setusernames([...set]);
@@ -35,14 +35,14 @@ const FavoritePage = ({
           sx={{
             width: "min(100%,776px)",
             position: "fixed",
-            top: "8px",
+            top: "0px",
             margin: "0 auto",
             zIndex: 9999,
             background: "white",
           }}
         >
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">{currentUser}</InputLabel>
+            <InputLabel id="demo-simple-select-label">Filter-Songs</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"

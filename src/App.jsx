@@ -8,7 +8,7 @@ import { fetchData, arrangeData } from "./assets/Utility/Utility.components";
 import PlayerComponent from "./components/player/Player.component";
 import SignInPage from "./pages/sign-in-page/sign-in-page.component";
 import SignUpPage from "./pages/sign-up-page/sign-up-page.component";
-import { getFavArray } from "./assets/Utility/Utility.components";
+// import { getFavArray } from "./assets/Utility/Utility.components";
 
 class App extends Component {
   constructor() {
@@ -27,6 +27,7 @@ class App extends Component {
       serverUrl: "https://songsserver.onrender.com/api/song-sparkle",
       favoriteSongsId: [],
       currentUser: "",
+      isUserExist: false,
     };
   }
   handlePlayer = (index, songs, active) => {
@@ -55,8 +56,11 @@ class App extends Component {
       allPlaylists[ids] = songsData;
       this.setState({ playlists: allPlaylists });
     }
-    const { idArr } = await getFavArray(this.state.serverUrl);
-    this.setState({ favoriteSongsId: idArr });
+    // const { idArr, usernameArr } = await getFavArray(this.state.serverUrl);
+    // this.setState({
+    //   isUserExist: usernameArr.includes(this.state.currentUser),
+    // });
+    // this.setState({ favoriteSongsId: idArr });
   }
 
   render() {
@@ -116,6 +120,7 @@ class App extends Component {
                   PlayingSongs={this.state.songs}
                   favoriteSongsId={this.state.favoriteSongsId}
                   currentUser={this.state.currentUser}
+                  isUserExist={this.state.isUserExist}
                 />
               }
             />

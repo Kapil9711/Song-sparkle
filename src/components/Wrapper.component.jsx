@@ -95,7 +95,17 @@ class Wrapper extends Component {
     if (this.props.FavoritePage) {
       filteredSongs = this.state.favoriteSongs;
       // console.log(this.props.selectedUser, this.props.currentUser);
-      if (this.props.selectedUser !== "All") {
+      if (!this.props.selectedUser) {
+        let filterdArr = [];
+        for (let i = 0; i < this.state.usernames.length; i++) {
+          const user = this.state.usernames[i];
+          if (user === this.props.currentUser)
+            filterdArr.push(filteredSongs[i]);
+        }
+
+        if (filterdArr.length) filteredSongs = filterdArr;
+      }
+      if (this.props.selectedUser !== "All" && this.props.selectedUser) {
         let filterdArr = [];
         for (let i = 0; i < this.state.usernames.length; i++) {
           const user = this.state.usernames[i];
