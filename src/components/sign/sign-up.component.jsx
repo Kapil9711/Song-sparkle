@@ -38,7 +38,7 @@ class SignUp extends React.Component {
       method: "POST",
       url,
       headers: {
-        "content-type": "application/json",
+        "content-type": "application/x-www-form-urlencoded",
       },
       data: {
         email,
