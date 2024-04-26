@@ -30,7 +30,6 @@ const Card = ({
     await changeFavorite(id, FavoriteSongs.includes(id), currentUser);
     await hanldeFavoriteSongs();
   };
-  console.log(usernames);
 
   return (
     <CardWrapper

@@ -35,6 +35,7 @@ class Wrapper extends Component {
       FavoriteSongs: [],
       favoriteSongs: [],
       usernames: [],
+      selectedUser: this.props.selectedUser,
     };
     this.props = props;
   }
@@ -64,6 +65,9 @@ class Wrapper extends Component {
     }
     this.setState({ FavoriteSongs: idArr });
     this.setState({ usernames: usernameArr });
+    if (this.props.handleUsername) {
+      this.props.handleUsername(usernameArr);
+    }
   };
 
   async componentDidMount() {
@@ -77,6 +81,9 @@ class Wrapper extends Component {
     }
     this.setState({ FavoriteSongs: idArr });
     this.setState({ usernames: usernameArr });
+    if (this.props.handleUsername) {
+      this.props.handleUsername(usernameArr);
+    }
   }
 
   render() {
@@ -85,7 +92,19 @@ class Wrapper extends Component {
     if (this.props.currentPath === "trendingPage")
       filteredSongs = globalSongs[this.props.activePlaylist];
 
-    if (this.props.FavoritePage) filteredSongs = this.state.favoriteSongs;
+    if (this.props.FavoritePage) {
+      filteredSongs = this.state.favoriteSongs;
+      // console.log(this.props.selectedUser, this.props.currentUser);
+      if (this.props.selectedUser !== "All") {
+        let filterdArr = [];
+        for (let i = 0; i < this.state.usernames.length; i++) {
+          const user = this.state.usernames[i];
+          if (user === this.props.selectedUser)
+            filterdArr.push(filteredSongs[i]);
+        }
+        filteredSongs = filterdArr;
+      }
+    }
     if (this.state.searchString.length) filteredSongs = this.state.liveSongs;
     if (!filteredSongs) filteredSongs = [];
 
